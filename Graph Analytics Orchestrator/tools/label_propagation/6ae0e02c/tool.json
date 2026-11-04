@@ -1,0 +1,53 @@
+{
+  "name": "label_propagation",
+  "implementation_id": "label_propagation.6ae0e02c",
+  "author": "6ae0e02c",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds communities (clusters of densely connected nodes) by label propagation: every node starts with its own label, then repeatedly adopts the most common label among its neighbours until the labels stop changing. Use it for questions like 'what groups exist in this network?', 'which airports form a regional cluster?', or 'which characters belong together?'. Returns the number of communities, the modularity of the partition (higher means better separated communities) and the largest communities with their members. Each returned community is also registered as a subgraph, so its graph_id can be passed to other tools. Works on undirected graphs and on directed graphs, where edge directions are ignored. Edge weights are ignored. Results depend on the visit order, so a seed parameter makes runs reproducible.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for the node visit order. Same seed gives the same communities.",
+        "default": 0
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of propagation passes before stopping.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 3,
+      "seed": 7
+    }
+  ]
+}

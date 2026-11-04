@@ -1,0 +1,86 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.d35c782d",
+  "author": "d35c782d",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Builds the ego network of one node: the node itself (the ego) and the nodes it is connected to (its neighbours or alters), with the edges around them. Use it for questions like 'show me Bob's immediate network', 'who is within two hops of this airport' or 'how tightly knit are this person's contacts'. Needs a node id, so call lookup_node first if the question gives a name. level 1.0 keeps only the ego's own links, 1.5 (default) also keeps links among the neighbours, 2.0 adds neighbours of neighbours. On directed graphs direction chooses outgoing (default), incoming or both kinds of links. Works on directed and undirected graphs; weights are ignored. Optional alter_density gives how interconnected the neighbours are (0 to 1). With include_ego=false it also reports how many separate groups the neighbours fall into, which shows whether the ego is a bridge. Returns the nearest nodes (up to top_k), node and edge counts, and registers the full subgraph as result_graph_id for other tools.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'airports'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Node id (not a name) of the ego, e.g. 'MAA' or 'm1'."
+      },
+      "level": {
+        "type": "number",
+        "description": "How much of the neighbourhood to include: 1.0 = ego plus its direct links only; 1.5 = also the links among the neighbours; 2.0 = also the neighbours of the neighbours.",
+        "default": 1.5,
+        "enum": [
+          1.0,
+          1.5,
+          2.0
+        ]
+      },
+      "direction": {
+        "type": "string",
+        "description": "For directed graphs only: which links make a node a neighbour. 'out' = links leaving the ego, 'in' = links arriving at the ego, 'both' = either. Ignored on undirected graphs.",
+        "default": "out",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ]
+      },
+      "include_ego": {
+        "type": "boolean",
+        "description": "Whether the ego node itself is part of the returned subgraph. Set false to also get the number of separate neighbour groups (not allowed with level 1.0).",
+        "default": true
+      },
+      "alter_density": {
+        "type": "boolean",
+        "description": "Set true to also compute the alter density: the share of possible links among the neighbours that actually exist (0 to 1).",
+        "default": false
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes to list in the result, nearest first (the full subgraph is always registered).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "level": 1.0,
+      "alter_density": true
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "include_ego": false
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "level": 2.0,
+      "direction": "both",
+      "top_k": 5
+    }
+  ]
+}

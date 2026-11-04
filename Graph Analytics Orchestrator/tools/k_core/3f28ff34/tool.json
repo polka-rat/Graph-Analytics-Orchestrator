@@ -1,0 +1,45 @@
+{
+  "name": "k_core",
+  "implementation_id": "k_core.3f28ff34",
+  "author": "3f28ff34",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds the tightly connected core of a graph by k-core decomposition: repeatedly removes nodes with fewer than k connections until every remaining node has at least k neighbours inside the core. Use it for questions like 'what is the tightly connected core', 'which nodes are most deeply embedded', or 'which group has everyone linked to at least 5 others'. Leave k out to get the densest core (the largest k with a non-empty core). Works on all graphs; on directed graphs a node's connections are its incoming plus outgoing edges, and edge weights are ignored. Returns k, max_core_number, size (the number of nodes in the core), the top_k core nodes by core number with id, label and core_number, and result_graph_id: the core as a subgraph that other tools can run on next.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Minimum number of connections each node must have inside the core. Leave it out to get the densest core.",
+        "minimum": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many core nodes to list, highest core number first. size and result_graph_id always cover the whole core.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "k": 3
+    }
+  ]
+}

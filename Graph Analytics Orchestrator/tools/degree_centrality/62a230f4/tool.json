@@ -1,0 +1,45 @@
+{
+  "name": "degree_centrality",
+  "implementation_id": "degree_centrality.62a230f4",
+  "author": "62a230f4",
+  "tier": "easy",
+  "category": "centrality",
+  "description": "Ranks nodes by degree centrality: degree divided by n-1. Use for questions about the most connected people or the airports with the most direct routes. Works on directed and undirected graphs. On a directed graph it also returns in_score and out_score. Returns the top_k nodes with scores. Optional mode 'in' or 'out' ranks by incoming or outgoing degree instead of total.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "mode": {
+        "type": "string",
+        "description": "Ranking key: total (default), in, or out. On undirected graphs in and out match total."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "mode": "out"
+    }
+  ]
+}

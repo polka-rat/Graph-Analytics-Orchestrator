@@ -1,0 +1,35 @@
+{
+  "name": "bipartite_check",
+  "implementation_id": "bipartite_check.62a230f4",
+  "author": "62a230f4",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Checks whether the graph is bipartite: nodes split into two sides with every edge going between sides. Use for questions about two-group structure, such as students vs projects. Directed graphs are treated as undirected. If it is bipartite, returns both sides (counts plus up to top_k nodes each) and registers the larger side as result_graph_id. If not, explains why.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes to list from each side.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "karate"
+    }
+  ]
+}

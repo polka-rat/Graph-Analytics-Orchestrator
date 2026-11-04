@@ -1,0 +1,46 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.f9857550",
+  "author": "f9857550",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds a maximum matching in an undirected bipartite graph with the Hopcroft-Karp algorithm: the largest set of edges in which no node is used twice. Use for assignment questions like 'what is the best assignment of students to projects?', 'how many students can each get a distinct project?' or 'can everyone be paired up?'. Only works on undirected bipartite graphs (e.g. 'projects'); returns an error for directed or non-bipartite graphs. The two sides come from side_attribute if given (e.g. 'side'), else from 2-colouring. Weights are ignored. Returns matching_size, the size of each side, unmatched counts, is_perfect and up to top_k matched pairs, each with left and right node {id, label}.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of an undirected bipartite graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many matched pairs to list (the matching size is always reported in full).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "side_attribute": {
+        "type": "string",
+        "description": "Optional node attribute with exactly two values that says which side each node is on, e.g. 'side' on projects. If omitted, sides are found by 2-colouring."
+      },
+      "left_value": {
+        "type": "string",
+        "description": "Optional value of side_attribute that marks the left side, e.g. 'student'. Defaults to the alphabetically first value."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "projects",
+      "side_attribute": "side",
+      "left_value": "student",
+      "top_k": 16
+    }
+  ]
+}

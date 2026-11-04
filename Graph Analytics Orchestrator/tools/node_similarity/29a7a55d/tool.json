@@ -1,0 +1,42 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.29a7a55d",
+  "author": "29a7a55d",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Compares the connections of two nodes: counts their common neighbours and their Jaccard similarity (common neighbours divided by the union of both neighbourhoods). Use for questions like 'how similar are the connections of Alice and Bob?', 'do these two airports share destinations?' or 'who connects these two people?'. Works on directed and undirected graphs; on directed graphs direction is ignored. Returns both nodes with their degrees, the number and a sample of common neighbours, the union size and the Jaccard score.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node_a": {
+        "type": "string",
+        "description": "Id of the first node. If you only know a name, find the id with lookup_node first."
+      },
+      "node_b": {
+        "type": "string",
+        "description": "Id of the second node, different from node_a. If you only know a name, find the id with lookup_node first."
+      }
+    },
+    "required": [
+      "graph_id",
+      "node_a",
+      "node_b"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node_a": "m1",
+      "node_b": "m34"
+    },
+    {
+      "graph_id": "lesmis",
+      "node_a": "c01",
+      "node_b": "c02"
+    }
+  ]
+}

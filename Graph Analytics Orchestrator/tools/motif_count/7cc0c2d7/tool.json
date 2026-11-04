@@ -1,0 +1,28 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.7cc0c2d7",
+  "author": "7cc0c2d7",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts triangle motifs in a graph. A triangle is a set of three distinct nodes where every pair is connected. For directed graphs, edge directions are ignored. Supports weighted and unweighted graphs; weights are ignored.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

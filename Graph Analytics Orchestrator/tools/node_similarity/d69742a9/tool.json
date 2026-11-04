@@ -1,0 +1,42 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.d69742a9",
+  "author": "d69742a9",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Compares two nodes by their common neighbours and Jaccard similarity. Use it for questions about whether two people, airports, or other entities have similar connections. Works on directed and undirected graphs by treating each node's incoming and outgoing neighbours as an undirected neighbourhood. Returns both node references, common neighbours, the count, and a Jaccard score.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the first node."
+      },
+      "other": {
+        "type": "string",
+        "description": "Id of the second node to compare."
+      }
+    },
+    "required": [
+      "graph_id",
+      "node",
+      "other"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "other": "m2"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "other": "DEL"
+    }
+  ]
+}

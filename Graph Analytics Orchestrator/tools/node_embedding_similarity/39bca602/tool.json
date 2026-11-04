@@ -1,0 +1,68 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.39bca602",
+  "author": "39bca602",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Calculates structural role similarity using random-walk embeddings (DeepWalk style) and matrix factorization. Generates random walks, constructs a pointwise mutual information matrix (PPMI), derives low-dimensional latent vectors via truncated SVD, and ranks the top_k most similar nodes using cosine similarity.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Unique identifier of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Reference node ID. Use lookup_node to find node IDs."
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Dimensionality of the learned embedding vectors.",
+        "default": 16
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Step length for each random walk sequence.",
+        "default": 10
+      },
+      "num_walks": {
+        "type": "integer",
+        "description": "Number of distinct walks initialized per node.",
+        "default": 5
+      },
+      "window_size": {
+        "type": "integer",
+        "description": "Context window radius for node co-occurrence counting.",
+        "default": 2
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for reproducible walk generation.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Number of top similar nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    }
+  ]
+}

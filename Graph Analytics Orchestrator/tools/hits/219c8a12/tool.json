@@ -1,0 +1,75 @@
+{
+  "name": "hits",
+  "implementation_id": "hits.219c8a12",
+  "author": "219c8a12",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Computes HITS hub and authority scores by power iteration. Authorities are nodes pointed to by many good hubs (e.g. the most linked-to pages, the most popular destination airports); hubs are nodes that point to many good authorities (e.g. the best directories or best-connected departure points). Use for questions like 'which pages are the best hubs?', 'which sources are most authoritative?' or 'which airports have routes to the most important destinations?'. Designed for directed graphs; on undirected graphs hub and authority scores are identical. Uses edge weights by default if the graph has them (set weighted=false to count every link equally; for airports the weight is distance in km). Returns the top_k nodes ranked by hub score, authority score, or both; each entry has id, label, hub and authority scores (summing to 1 by default).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "score": {
+        "type": "string",
+        "enum": [
+          "hub",
+          "authority",
+          "both"
+        ],
+        "description": "Which ranking to return: 'hub', 'authority' or 'both'.",
+        "default": "both"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return per ranking.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of power iterations; raise it if the summary says the scores did not converge.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 100000
+      },
+      "tol": {
+        "type": "number",
+        "description": "Convergence threshold: stop when the hub scores (scaled to max 1) change by less than this in total (L1).",
+        "default": 1e-08
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "If true, scores in each ranking sum to 1; if false, the largest score is 1.",
+        "default": true
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "If true and the graph is weighted, each link counts in proportion to its weight; if false, every link counts equally.",
+        "default": true
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "score": "hub",
+      "top_k": 5,
+      "weighted": false
+    },
+    {
+      "graph_id": "karate",
+      "score": "authority"
+    }
+  ]
+}

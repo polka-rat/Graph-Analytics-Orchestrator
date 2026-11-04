@@ -1,0 +1,52 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.92711a92",
+  "author": "92711a92",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Checks whether any path exists from a source node to a target node, using breadth-first search. Use it for questions like 'can you get from X to Y at all?', 'is course A (indirectly) a prerequisite of course B?' or 'are these two people connected?'. Works on directed graphs (follows edge direction, so A->B reachable does not imply B->A; set ignore_direction to true to ignore it) and undirected graphs; weights are ignored. Returns reachable (true/false), the fewest-hop path and its hop count when reachable, and how many nodes the source can reach. Source and target must be node ids: use lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to search."
+      },
+      "source": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA' in airports. Use lookup_node to find ids."
+      },
+      "target": {
+        "type": "string",
+        "description": "Id of the node to reach, e.g. 'LIS' in airports."
+      },
+      "ignore_direction": {
+        "type": "boolean",
+        "description": "On a directed graph, treat every edge as two-way. Has no effect on undirected graphs.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "courses",
+      "source": "CS101",
+      "target": "MA101"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

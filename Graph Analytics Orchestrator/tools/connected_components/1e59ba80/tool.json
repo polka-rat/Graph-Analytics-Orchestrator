@@ -1,0 +1,28 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.1e59ba80",
+  "author": "1e59ba80",
+  "tier": "easy",
+  "category": "community",
+  "description": "Splits an undirected graph into its connected components (groups of nodes joined by some path) using breadth-first search, and reports their sizes. Use for questions like 'Is the network connected?', 'How many separate parts does it have?', 'What is the largest connected part?' or 'Are any nodes isolated?'. Works on undirected graphs only (weights are ignored); a directed graph returns an error, so use strongly_connected_components there. Returns the number of components, whether the graph is connected, the largest size, the count of isolated nodes, and the components largest first, each with its size, its member nodes (up to 20 shown) and a graph_id for its registered subgraph. result_graph_id is the largest component, so other tools can run on it next.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the undirected graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "projects"
+    }
+  ]
+}

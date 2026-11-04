@@ -1,0 +1,75 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.41c8e8e2",
+  "author": "41c8e8e2",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds the nodes that play the most similar structural role to a given node, using DeepWalk-style random-walk embeddings: random walks from every node are turned into co-occurrence statistics, factorised into low-dimensional vectors, and nodes are ranked by cosine similarity to the query node. Use it for questions like 'which nodes are most like X?' or 'which airports play a similar role to Chennai?'. Edge direction and weights are ignored. Randomness is controlled by a seed (default 0), so results are repeatable. Returns the top_k most similar nodes with cosine scores.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the query node to find look-alikes for. Use lookup_node to find an id from a name."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many similar nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Size of each embedding vector (1 to 128).",
+        "default": 16
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Steps per random walk (2 to 200).",
+        "default": 40
+      },
+      "num_walks": {
+        "type": "integer",
+        "description": "Random walks started from every node (1 to 50).",
+        "default": 10
+      },
+      "window": {
+        "type": "integer",
+        "description": "How many steps apart two nodes on a walk still count as co-occurring (1 to 20).",
+        "default": 5
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed; the same seed always gives the same answer.",
+        "default": 0
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m34",
+      "top_k": 5,
+      "dimensions": 8,
+      "seed": 1
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    }
+  ]
+}

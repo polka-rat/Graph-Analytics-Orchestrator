@@ -1,0 +1,36 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.62a230f4",
+  "author": "62a230f4",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds maximal cliques with Bron-Kerbosch pivoting and returns the largest ones. Use for questions about groups where everyone is connected to everyone else. Works on undirected graphs only. Returns max_size, how many maximal cliques exist, and the top_k cliques (each with nodes, size, and a registered subgraph). result_graph_id is the largest clique (ties broken by node ids).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of an undirected graph, for example karate or lesmis."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many largest cliques to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

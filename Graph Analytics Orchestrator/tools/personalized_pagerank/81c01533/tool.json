@@ -1,0 +1,56 @@
+{
+  "name": "personalized_pagerank",
+  "implementation_id": "personalized_pagerank.81c01533",
+  "author": "81c01533",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Computes the Personalized PageRank scores to measure the relevance of all nodes in a network relative to a specific seed node. Use this tool for questions involving local community detection, personalized recommendations (e.g., 'What is most relevant to this paper?', 'What products are similar to item Y?'), or finding the most closely related nodes to a specific target in a graph. It works on both directed and undirected graphs. It returns the top k most relevant nodes(results)Note: This algorithm only supports graphs with non-negative edge weights.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "seed_node": {
+        "type": "string",
+        "description": "The starting node (target) to bias the PageRank toward."
+      },
+      "alpha": {
+        "type": "number",
+        "description": "Probability of continuing the random walk (1 - teleport probability).",
+        "default": 0.85
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top results to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of power iterations.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "tol": {
+        "type": "number",
+        "description": "Tolerance threshold for convergence.",
+        "default": 1e-05
+      }
+    },
+    "required": [
+      "graph_id",
+      "seed_node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "seed_node": "m1",
+      "top_k": 5
+    }
+  ]
+}

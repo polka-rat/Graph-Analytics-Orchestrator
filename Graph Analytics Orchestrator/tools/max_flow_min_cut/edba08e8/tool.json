@@ -1,0 +1,50 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.edba08e8",
+  "author": "edba08e8",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes the maximum flow between a source and a sink node with the Edmonds-Karp algorithm, and the minimum cut (the bottleneck edges whose removal would stop all flow). Edge weights are capacities; on unweighted graphs every edge has capacity 1, so the max flow equals the number of edge-disjoint paths. Use for questions like 'where is the bottleneck between A and B?', 'how much can flow from source to sink?' or 'how many independent routes connect A and B?'. Works on directed graphs (edges carry flow forward) and undirected graphs (either direction). Needs node ids (use lookup_node). Returns max_flow, the cut capacity and the top_k cut edges with node ids and labels; returns an error if the sink cannot be reached from the source.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'airports' or 'lesmis'."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the flow starts, e.g. 'MAA'. Use lookup_node to find ids from names."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Node id where the flow ends, e.g. 'LHR'. Must differ from source."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many minimum-cut edges to list (largest capacity first).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "sink": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "sink": "DEL",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "diameter_eccentricity",
+  "implementation_id": "diameter_eccentricity.ae9bcafc",
+  "author": "ae9bcafc",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Computes unweighted shortest-path eccentricities, the graph diameter and radius, and the center and periphery nodes. Use it to ask how far apart the most distant nodes are or how central a node is by distance. It supports connected undirected graphs and strongly connected directed graphs, ignores weights, and returns bounded labelled node lists.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional exact node id whose eccentricity should be included."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum center and periphery nodes to return in each list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c11",
+      "top_k": 5
+    }
+  ]
+}

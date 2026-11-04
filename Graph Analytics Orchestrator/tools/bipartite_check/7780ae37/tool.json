@@ -1,0 +1,39 @@
+{
+  "name": "bipartite_check",
+  "implementation_id": "bipartite_check.7780ae37",
+  "author": "7780ae37",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Tests whether a graph is bipartite, i.e. whether its nodes can be split into two groups with no edge inside a group (for example students versus projects, or two-colourable conflict graphs). Use it for questions like 'is this graph bipartite?', 'can the nodes be split into two groups with no links inside a group?' or 'what are the two sides?'. Edge direction is ignored, so it works on directed and undirected graphs. If bipartite, returns both sides (size, a sample of top_k nodes with ids and labels, and a subgraph id for each). If not, returns a shortest-found odd cycle as proof, with its subgraph id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to check, e.g. 'projects' or 'karate'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes of each side to list in the result.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "courses",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "topological_sort",
+  "implementation_id": "topological_sort.1e59ba80",
+  "author": "1e59ba80",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Orders the nodes of a directed acyclic graph so every edge A->B puts A before B (Kahn's algorithm; ties broken by smallest node id), or finds a cycle if one exists. Use for questions like 'In what order should these courses be taken?', 'Which prerequisites come first?', 'Which courses can be taken in the same term?' or 'Is there a circular dependency?'. Works on directed graphs only; weights are ignored; an undirected graph returns an error. If acyclic, returns is_dag=true and the full order, each node with its position and level (level 0 has no prerequisites; nodes on the same level do not depend on each other). If not, returns is_dag=false, a shortest cycle through one of its nodes, and how many nodes cannot be ordered.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the directed graph to order, e.g. 'courses'."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

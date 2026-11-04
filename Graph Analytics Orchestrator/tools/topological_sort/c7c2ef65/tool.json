@@ -1,0 +1,25 @@
+{
+  "name": "topological_sort",
+  "implementation_id": "topological_sort.c7c2ef65",
+  "author": "c7c2ef65",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Orders the nodes of a directed acyclic graph so that every edge A->B puts A before B. Use it for dependency questions, e.g. 'in what order can I take these courses so every prerequisite comes first', 'which courses have no prerequisites' or 'how many semesters does the longest prerequisite chain need'. Works only on directed graphs without cycles (such as 'courses'); on an undirected graph or one with a cycle it returns an error that names a cycle. Ties are broken by smallest node id, so the order is the lexicographically smallest valid one. Edge weights are ignored. Returns a list of nodes {id, label, position, level} in order: position counts from 1, and level is the length of the longest chain of predecessors (0 = no prerequisites, so nodes with the same level can be done in parallel). At most 100 nodes are listed.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of a directed acyclic graph, e.g. 'courses'."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    }
+  ]
+}

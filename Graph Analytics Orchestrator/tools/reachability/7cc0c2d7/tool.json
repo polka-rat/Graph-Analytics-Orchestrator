@@ -1,0 +1,37 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.7cc0c2d7",
+  "author": "7cc0c2d7",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Checks whether a target node can be reached from a source node using graph traversal. Directed graphs follow outgoing edges.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to search."
+      },
+      "source": {
+        "type": "string",
+        "description": "Id of the starting node."
+      },
+      "target": {
+        "type": "string",
+        "description": "Id of the destination node."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m2"
+    }
+  ]
+}

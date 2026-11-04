@@ -1,0 +1,47 @@
+{
+  "name": "shortest_path_weighted",
+  "implementation_id": "shortest_path_weighted.c4576e71",
+  "author": "c4576e71",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Finds the cheapest route between two nodes with Dijkstra's algorithm, minimising the sum of edge weights (for example the shortest route by distance in km between two airports). Use it for questions like 'what is the shortest route from A to B?' or 'how far is it from A to B?'. Works on directed graphs (follows edge direction) and undirected graphs; on unweighted graphs every edge costs 1. Weights must be non-negative. Returns the total distance, the number of hops and the full path as a list of nodes with their cumulative distance. Gives a clear error if a node is missing or no path exists.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the path starts (use lookup_node to find ids, e.g. 'MAA')."
+      },
+      "target": {
+        "type": "string",
+        "description": "Node id where the path ends (use lookup_node to find ids, e.g. 'LIS')."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "lesmis",
+      "source": "c01",
+      "target": "c77"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

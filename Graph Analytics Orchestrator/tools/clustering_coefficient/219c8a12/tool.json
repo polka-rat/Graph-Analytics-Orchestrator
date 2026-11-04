@@ -1,0 +1,51 @@
+{
+  "name": "clustering_coefficient",
+  "implementation_id": "clustering_coefficient.219c8a12",
+  "author": "219c8a12",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Measures how tightly knit a node's neighbourhood is with the local clustering coefficient: the fraction of pairs of a node's neighbours that are themselves connected (0 = none, 1 = all; nodes with fewer than 2 neighbours score 0). Use for questions like 'how tightly knit is Alice's circle?', 'do X's friends know each other?' or 'which nodes sit in dense clusters?'. Give a node id for that node's score, or omit it to get the top_k most clustered nodes. The summary always reports the graph-wide average clustering and the global transitivity (3 x triangles / connected triples, a different measure). Works on any graph: directed graphs are treated as undirected and weights are ignored. Returns a list of nodes with score (the coefficient), degree and triangles.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id (not a name; use lookup_node to find it). If given, returns only this node's coefficient plus the graph average."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "When no node is given, how many of the most clustered nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "min_degree": {
+        "type": "integer",
+        "description": "When ranking, only consider nodes with at least this many neighbours (2 by default; raise it to skip trivial 1.0 scores of low-degree nodes). Does not affect the average.",
+        "default": 2,
+        "minimum": 0
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "min_degree": 10
+    }
+  ]
+}

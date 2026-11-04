@@ -1,0 +1,57 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.98eff80e",
+  "author": "98eff80e",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Computes exact shortest-path betweenness centrality using Ulrik Brandes' algorithm. Identifies key brokers, bridges, and bottleneck nodes that control information flow across groups. Supports directed and undirected, unweighted (hop-based BFS) and weighted (distance-based Dijkstra) graphs. Returns top_k nodes ranked by betweenness score with node labels.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Number of highest-ranked nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "If true, normalize scores by the number of possible node pairs.",
+        "default": true
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "If true, use edge weights as path distances (Dijkstra); if false, count hop count (BFS).",
+        "default": false
+      },
+      "endpoints": {
+        "type": "boolean",
+        "description": "If true, include source and target endpoints in shortest path counts.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "weighted": true,
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

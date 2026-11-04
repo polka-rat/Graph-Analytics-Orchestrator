@@ -1,0 +1,66 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.e7c02e9e",
+  "author": "e7c02e9e",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities (densely connected groups of nodes) using the Louvain modularity-optimisation algorithm implemented from scratch. Use it to answer questions such as 'what communities exist in this network?', 'what natural groups are present?', 'which community does node X belong to?' or 'how strong is the community structure?'. Works on undirected graphs and also accepts directed graphs, treating their edges as undirected. Supports weighted graphs; set use_weights=false when weights represent distances or costs rather than connection strengths. Returns the number of communities, modularity, and the largest top_k communities with their sizes, representative members and registered subgraph IDs. If node is supplied, its community is also reported and listed even if it falls outside the top_k largest communities. result_graph_id identifies the largest community.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "resolution": {
+        "type": "number",
+        "description": "Positive community-size control parameter. 1.0 is standard modularity; larger values generally favour more and smaller communities, while smaller values generally favour fewer and larger communities.",
+        "default": 1.0
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "If true, edge weights are used as connection strengths when the graph is weighted. Set false when weights represent distances or costs rather than connection strengths.",
+        "default": true
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed controlling the node visitation order. The same graph, parameters and seed produce deterministic results.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest communities to list in detail. If node is supplied and its community is outside the top_k, that community is also listed.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node ID. If provided, the result also identifies its community and size. Use lookup_node to find the ID from a node name."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5,
+      "node": "c74"
+    },
+    {
+      "graph_id": "airports",
+      "use_weights": false,
+      "top_k": 6
+    },
+    {
+      "graph_id": "lesmis",
+      "resolution": 1.5,
+      "seed": 3
+    }
+  ]
+}

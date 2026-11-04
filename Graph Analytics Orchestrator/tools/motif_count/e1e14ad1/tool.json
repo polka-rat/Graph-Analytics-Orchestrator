@@ -1,0 +1,36 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.e1e14ad1",
+  "author": "e1e14ad1",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts small 3-node patterns in a graph. Use for 'how many triangles are there?', 'are there feed-forward loops?', 'which small patterns are most common?' and 'which nodes are in the most triangles?'. Works on directed and undirected graphs; weights and self-loops are ignored. Returns triangles (any three nodes linked pairwise, direction ignored; includes feed-forward loops and cycles), open_triads (exactly two of three pairs linked), feed_forward_loops (A->B, B->C, A->C) and directed_cycles (A->B, B->C, C->A), which are null on undirected graphs, and top_nodes (the top_k nodes in the most triangles, each with its triangles count). Loops and cycles are induced: exactly those three one-way edges, so on airports only 1 triple is a feed-forward loop. Not for per-node clustering (clustering_coefficient) or edge counts and density (graph_summary).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to list, ranked by how many triangles they are in (default 10, maximum 100). The counts are never truncated.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

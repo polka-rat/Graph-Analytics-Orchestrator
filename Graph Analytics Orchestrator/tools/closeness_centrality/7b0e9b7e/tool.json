@@ -1,0 +1,36 @@
+{
+  "name": "closeness_centrality",
+  "implementation_id": "closeness_centrality.7b0e9b7e",
+  "author": "7b0e9b7e",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by closeness centrality: how few steps (hops) a node is, on average, from all other nodes, found by breadth-first search from every node. Use for questions like 'who can reach everyone fastest?', 'which airport is the most central / best connected overall?' or 'who is closest to everyone in the network?'. Works on undirected and directed graphs; on directed graphs the distance is measured from the other nodes TO the node (incoming paths). Edge weights are ignored: distance is the number of edges, e.g. flights. In disconnected graphs, nodes that reach only a small part of the graph get a lower score (Wasserman-Faust scaling). Returns the top_k nodes with their closeness score (0 to 1, higher = more central) and average distance in hops.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the most central nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

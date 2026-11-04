@@ -1,0 +1,32 @@
+{
+  "name": "minimum_spanning_tree",
+  "implementation_id": "minimum_spanning_tree.3ddaa37e",
+  "author": "3ddaa37e",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Finds a minimum-weight spanning tree using Kruskal and Union-Find. Use to connect every node at minimum total cost. Supports connected undirected graphs, including negative weights; unweighted edges cost 1. Returns total weight and a bounded edge preview, with the complete tree registered as result_graph_id. Rejects disconnected, directed or empty graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries in each output preview. Full scalar totals are unaffected.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "lesmis"
+    }
+  ]
+}

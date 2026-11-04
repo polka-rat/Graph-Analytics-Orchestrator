@@ -1,0 +1,36 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.6ae0e02c",
+  "author": "6ae0e02c",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds maximal cliques: groups of nodes in which every node is directly connected to every other node, and which cannot be extended by adding another node. Use it for questions like 'what is the largest group of people who all know each other?', 'which characters all appear together in the same chapters?', or 'how many tightly knit groups does this network contain?'. Returns the total number of maximal cliques found and the largest ones, each with its full member list. Every returned clique is also registered as a subgraph, so its graph_id can be passed to other tools. Requires an undirected graph: a clique is an undirected idea, so directed graphs such as 'airports' are rejected with an explanation. Edge weights are ignored.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the undirected graph to analyse, e.g. 'karate' or 'lesmis'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest cliques to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

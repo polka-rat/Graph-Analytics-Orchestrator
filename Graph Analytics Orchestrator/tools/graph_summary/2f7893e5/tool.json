@@ -1,0 +1,28 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.2f7893e5",
+  "author": "2f7893e5",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Summarises the size and density of a whole graph. Use it for questions like 'How big is this network?', 'How many nodes/edges does it have?', 'How dense or sparse is it?' or 'How many connections does a node have on average?'. Works on any graph or registered subgraph: directed or undirected, weighted or unweighted (weights are ignored). Returns one object with nodes, edges, density (m/(n(n-1)) for directed graphs, 2m/(n(n-1)) for undirected; 0 when there are fewer than 2 nodes), avg_degree (2m/n, i.e. in + out for directed graphs), isolated_nodes (nodes with no edges) and, for directed graphs, avg_out_degree and avg_in_degree (both m/n). It does not list or rank individual nodes.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph or registered subgraph to summarise (see list_graphs)."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

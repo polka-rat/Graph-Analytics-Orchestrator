@@ -1,0 +1,50 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.63fb3e40",
+  "author": "63fb3e40",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the degree distribution of a graph: a histogram of how many nodes have each number of connections, plus min, max, mean, median and standard deviation of degree, the most common degree, the number of isolated nodes, the fraction of nodes below the mean degree, and the highest-degree nodes. Use it for questions about the shape of a network's connectivity, such as 'Do most nodes have only a few connections?', 'Is the network dominated by a few hubs?' or 'How many airports have more than 100 routes?'. Works on directed and undirected graphs; weights are ignored (degree counts edges). For directed graphs choose total (in + out), in or out degree. Returns the statistics and a list of {degree, count} bins in increasing order of degree.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "degree_type": {
+        "type": "string",
+        "description": "For directed graphs: 'total' (in + out), 'in' (edges arriving) or 'out' (edges leaving). Ignored for undirected graphs.",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ],
+        "default": "total"
+      },
+      "bin_width": {
+        "type": "integer",
+        "description": "Width of each histogram bin in degrees; 1 gives one bin per exact degree. Use e.g. 10 or 50 for a coarser overview of large graphs.",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 10000
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "degree_type": "out"
+    },
+    {
+      "graph_id": "airports",
+      "bin_width": 50
+    }
+  ]
+}

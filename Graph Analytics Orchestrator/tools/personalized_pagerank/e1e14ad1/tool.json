@@ -1,0 +1,64 @@
+{
+  "name": "personalized_pagerank",
+  "implementation_id": "personalized_pagerank.e1e14ad1",
+  "author": "e1e14ad1",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by how relevant or close they are to one source node X, using Personalized PageRank (random walk with restart at X). Use for 'what is most relevant to X?', 'which nodes are closest to X overall?', 'who should be recommended for X?'. Counts all routes, not only the shortest (unlike shortest_path_unweighted); ranks relative to one source (for global importance use pagerank); returns no paths, similarity pairs or predicted links. Works on directed and undirected graphs; on directed graphs the walk follows edge direction, so only nodes reachable from X score, and a node with no outgoing edges gets an empty ranking. Scores are visit probabilities over the whole graph (all nodes, X included, sum to 1); the list is the top_k, excluding X unless include_source is true. source_score is X's own share.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Node id of the source, e.g. 'MAA' or 'm1'. Use lookup_node to find the id from a name."
+      },
+      "damping": {
+        "type": "number",
+        "description": "Probability of following an edge instead of restarting at the source; from 0 up to but not including 1 (default 0.85, the standard value). Higher spreads scores further from the source.",
+        "default": 0.85
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "Treat edge weights as tie strength (default false). Use true for lesmis (shared chapters); leave false for airports, where weight is distance in km. Ignored on unweighted graphs; result.weighted shows whether weights were used.",
+        "default": false
+      },
+      "include_source": {
+        "type": "boolean",
+        "description": "Also list the source node itself in the ranking (default false, since it always ranks first).",
+        "default": false
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return (default 10, maximum 100).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "use_weights": true,
+      "damping": 0.7
+    }
+  ]
+}

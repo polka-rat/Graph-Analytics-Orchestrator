@@ -1,0 +1,35 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.afc500fb",
+  "author": "afc500fb",
+  "tier": "hard",
+  "category": "community",
+  "description": "Detect communities in an undirected graph using the Girvan-Newman algorithm. Repeatedly removes the edge with the highest unweighted edge betweenness, recalculating scores after each removal. Supports weighted and unweighted undirected graphs, treating all edges equally for shortest paths. Returns community node references, registered subgraph IDs, and removed edges in order. Useful for questions about groups, clusters, and structural bridges in networks.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "communities": {
+        "type": "integer",
+        "description": "Target number of communities; the algorithm may return more if the graph is already disconnected.",
+        "default": 2,
+        "minimum": 1
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "communities": 3
+    }
+  ]
+}

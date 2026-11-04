@@ -1,0 +1,43 @@
+{
+  "name": "diameter_eccentricity",
+  "implementation_id": "diameter_eccentricity.ab9fb3a3",
+  "author": "ab9fb3a3",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Computes eccentricity (largest shortest-path distance from a node), diameter, radius, centre and periphery. Use for the most distant nodes or the network centre. Requires a nonempty connected undirected graph or strongly connected directed graph. Defaults to hop distances using BFS; use_weights=true uses Dijkstra with finite non-negative weights. Returns exact full-graph metrics plus up to top_k labelled nodes per list; eccentricities rank descending with node-ID ties. No subgraph is produced.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of a graph registered in the provided store."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries in each returned node list; calculations still use the full graph.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "Use non-negative edge weights as distances; false counts hops, even on weighted graphs.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "use_weights": true,
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.2f7893e5",
+  "author": "2f7893e5",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Ranks nodes by betweenness centrality (Brandes' algorithm): how often a node lies on the shortest paths between other pairs of nodes. Use it for questions like 'Which airports are the biggest transfer hubs?', 'Which character is the bridge between groups?', 'Who are the brokers or bottlenecks?' or 'How central is node X?'. Works on directed graphs (paths follow edge direction) and undirected graphs. By default paths are counted in hops and weights are ignored; set weighted=true to use edge weights as lengths (only sensible when weights are distances, e.g. airports km, not counts like lesmis). Scores are normalised by default (divided by (n-1)(n-2), as in NetworkX), so they lie between 0 and 1. Returns the top_k nodes (id, label, score, rank), highest first, ties by node id; with node, returns only that node's score and rank.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph or registered subgraph to analyse (see list_graphs)."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return, highest betweenness first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "true: divide by (n-1)(n-2) so scores are comparable across graphs (0 to 1). false: raw count of shortest-path fractions (halved for undirected graphs so each pair counts once).",
+        "default": true
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "true: shortest paths minimise the sum of edge weights (treated as lengths). false: shortest paths minimise the number of hops. Ignored on unweighted graphs.",
+        "default": false
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id. If given, return only this node's score and its rank among all nodes. Use lookup_node to find the id from a name."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "weighted": true
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74"
+    }
+  ]
+}

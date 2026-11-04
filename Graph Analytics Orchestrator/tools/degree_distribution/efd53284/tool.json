@@ -1,0 +1,28 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.efd53284",
+  "author": "efd53284",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the degree distribution of a graph: how many nodes have degree 0, 1, 2, and so on. Use it to answer questions about the spread of connectivity. Works on directed and undirected graphs, weighted or unweighted; on a directed graph degree is out_degree + in_degree, and edge weights are ignored because degree counts edges. Returns a list of degree/count buckets sorted by degree, including degree 0 when isolated nodes exist; result_graph_id is null.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

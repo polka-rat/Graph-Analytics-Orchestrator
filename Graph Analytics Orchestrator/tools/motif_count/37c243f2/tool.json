@@ -1,0 +1,33 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.37c243f2",
+  "author": "37c243f2",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts small network motifs in a graph: triangles in undirected graphs and feed-forward loops in directed graphs. Use it to measure local structural patterns. Returns the total motif count, motif type, and up to top_k example motifs without requiring external graph libraries.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of motif examples to return.",
+        "default": 15,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "top_k": 5
+    }
+  ]
+}

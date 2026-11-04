@@ -1,0 +1,36 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.d69742a9",
+  "author": "d69742a9",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Ranks nodes by betweenness centrality using Brandes' algorithm. Use it to find brokers, bridges, or nodes that lie on many shortest paths between groups. Supports directed and undirected weighted or unweighted graphs, with positive weights required. Returns deterministic top_k node references and normalized scores rounded to six decimals.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many highest-scoring nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

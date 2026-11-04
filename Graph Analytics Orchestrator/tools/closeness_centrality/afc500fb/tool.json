@@ -1,0 +1,35 @@
+{
+  "name": "closeness_centrality",
+  "implementation_id": "closeness_centrality.afc500fb",
+  "author": "afc500fb",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Calculates NetworkX-style closeness centrality for one specified node. Supports directed and undirected, weighted and unweighted graphs. For directed graphs, measures distances toward the selected node. For weighted graphs, edge weights are interpreted as distances and must be finite and strictly positive. Uses improved normalization for disconnected graphs. Returns the selected node, its closeness score, and the number of other nodes that can reach it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyze."
+      },
+      "node": {
+        "type": "string",
+        "description": "ID of the node whose closeness centrality should be calculated."
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA"
+    }
+  ]
+}

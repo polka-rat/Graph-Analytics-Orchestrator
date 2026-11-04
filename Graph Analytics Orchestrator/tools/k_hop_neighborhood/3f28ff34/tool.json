@@ -1,0 +1,55 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.3f28ff34",
+  "author": "3f28ff34",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds every node within k steps (hops) of a given node, using breadth-first search. Use it for questions like 'who is within two step/hops of X', 'friends of friends of X', or 'which airports can I reach from X with at most one stop' (k hops = at most k-1 stops in between). Works on all graphs; on directed graphs it follows outgoing edges only, and edge weights are ignored (every edge is one hop). Needs a node id, not a name: call lookup_node first. Returns count (the total number of nodes found, excluding the start node), the nearest top_k nodes with id, label and hop distance, and result_graph_id: a subgraph of the start node plus every node found, which other tools can run on next.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA' or 'm1'. Not a name: use lookup_node to find the id."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Number of hops: the largest distance included. k=1 gives direct neighbours, k=2 adds their neighbours too.",
+        "default": 1,
+        "minimum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the nearest nodes to list. count and result_graph_id always cover all nodes found.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 2
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "k": 2,
+      "top_k": 5
+    }
+  ]
+}

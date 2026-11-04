@@ -1,0 +1,81 @@
+{
+  "name": "link_prediction",
+  "implementation_id": "link_prediction.d35c782d",
+  "author": "d35c782d",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Predicts likely missing links: ranks not-yet-connected pairs of nodes by how likely they are to connect, using shared neighbours. Use it for 'who should Alice connect with next?' or 'which new routes are most likely?'. Give node to get the best new partners for one node (needs a node id; call lookup_node first if you only have a name); leave it out to get the top pairs in the whole graph. Choose method: adamic_adar (default; best for friend and social networks, since rare shared friends count more), jaccard (when nodes have very different numbers of neighbours), resource_allocation (sparse networks with hubs), common_neighbors (simple baseline), preferential_attachment (hub networks such as airports, where new links go to big hubs), community_resource_allocation (when nodes have group labels such as club or country; set community_attribute). Works on directed and undirected graphs; direction is ignored unless use_direction is true. Edge weights are ignored. Returns scored candidates, highest score first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'airports'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id (not a name), e.g. 'MAA' or 'm1'. If given, returns the best new partners for this node; if omitted, returns the best pairs in the whole graph."
+      },
+      "method": {
+        "type": "string",
+        "description": "Scoring method: adamic_adar (default, social networks), jaccard, resource_allocation, common_neighbors, preferential_attachment (hub networks like airports) or community_resource_allocation (needs community_attribute).",
+        "default": "adamic_adar",
+        "enum": [
+          "adamic_adar",
+          "common_neighbors",
+          "jaccard",
+          "resource_allocation",
+          "preferential_attachment",
+          "community_resource_allocation"
+        ]
+      },
+      "community_attribute": {
+        "type": "string",
+        "description": "Only for method community_resource_allocation: name of the node attribute that groups nodes into communities, e.g. 'club' for karate or 'country' for airports."
+      },
+      "use_direction": {
+        "type": "boolean",
+        "description": "For directed graphs only: false (default) ignores link direction; true predicts a link from u to v from u's outgoing and v's incoming links. Ignored on undirected graphs.",
+        "default": false
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many results to return, highest score first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "method": "jaccard"
+    },
+    {
+      "graph_id": "karate",
+      "method": "community_resource_allocation",
+      "community_attribute": "club",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "method": "preferential_attachment",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "method": "resource_allocation",
+      "use_direction": true,
+      "top_k": 5
+    }
+  ]
+}

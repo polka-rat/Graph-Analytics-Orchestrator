@@ -1,0 +1,56 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.fcd76f91",
+  "author": "fcd76f91",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Ranks nodes by betweenness centrality, computed exactly with Brandes' algorithm: the share of shortest paths between all other pairs of nodes that pass through a node. Use it for questions about brokers, bridges, gatekeepers or bottlenecks, e.g. 'Who are the key brokers between groups?', 'Which airport is the most important transfer hub?' or 'Who controls the flow of information?'. Not for 'most connected' (use degree_centrality) or 'most influential' (use pagerank). Works on directed and undirected graphs; shortest paths count hops by default, or use edge weights as distances with weighted=true. Returns the top_k nodes (id, label, score, rank), highest first; scores are normalised to 0..1 by default. Pass 'node' to also get that node's score and rank.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id whose score and rank to report as well, even if it is not in the top_k. Use lookup_node to find it from a name."
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "true: treat edge weights as distances (e.g. km) when finding shortest paths; false: count hops.",
+        "default": false
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "true: divide by the number of node pairs so scores lie between 0 and 1; false: raw counts of shortest paths.",
+        "default": true
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5,
+      "weighted": true,
+      "node": "c12"
+    }
+  ]
+}

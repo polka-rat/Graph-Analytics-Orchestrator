@@ -1,0 +1,44 @@
+{
+  "name": "diameter_eccentricity",
+  "implementation_id": "diameter_eccentricity.991d1029",
+  "author": "991d1029",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Computes the diameter (longest shortest path), radius, center and periphery of a graph, measured in hops (edge weights ignored) using BFS from every node. Eccentricity of a node is its distance to the farthest node. Use for questions like 'how far apart are the most distant nodes?', 'what is the diameter of the network?', 'which nodes are most central by distance (the center)?' or 'which nodes are on the outskirts (the periphery)?'. Works on undirected graphs, and on directed graphs that are strongly connected (distances follow edge direction). Disconnected or not strongly connected graphs return an error. Returns diameter, radius, up to top_k center and periphery nodes (sorted by node id), one farthest pair of nodes, and optionally the eccentricity of one given node.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of center and of periphery nodes to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id; if given, its eccentricity is also returned. Use lookup_node to find ids."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c11"
+    }
+  ]
+}

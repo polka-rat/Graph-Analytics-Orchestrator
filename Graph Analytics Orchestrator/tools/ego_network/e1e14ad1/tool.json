@@ -1,0 +1,53 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.e1e14ad1",
+  "author": "e1e14ad1",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Builds the ego network of one node: the node, its immediate (1-hop) neighbours and every edge among them. Use for 'show me X's immediate network' and 'who is directly connected to X?'. For 2+ hops use k_hop_neighborhood. Works on directed and undirected graphs; on directed graphs 'direction' picks which neighbours count. Edge weights are ignored. Returns the neighbour count, the number of nodes and edges in the ego network, a sample of neighbours (top_k, sorted by id) and result_graph_id, the registered subgraph another tool can run on.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Node id of the centre (the ego), e.g. 'MAA' or 'm1'. Use lookup_node to find the id from a name."
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "both",
+          "out",
+          "in"
+        ],
+        "description": "Directed graphs only: which nodes count as neighbours. 'out' = nodes the ego points to, 'in' = nodes pointing to the ego, 'both' = either (default 'both'). Edge counts include all edges among the chosen nodes, in either direction. Ignored for undirected graphs."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many neighbours to list in neighbor_sample (default 10, maximum 100). The neighbour count is always the full number.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "direction": "out",
+      "top_k": 5
+    }
+  ]
+}

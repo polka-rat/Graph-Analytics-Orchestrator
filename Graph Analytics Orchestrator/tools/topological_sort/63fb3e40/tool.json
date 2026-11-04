@@ -1,0 +1,44 @@
+{
+  "name": "topological_sort",
+  "implementation_id": "topological_sort.63fb3e40",
+  "author": "63fb3e40",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Orders the nodes of a directed acyclic graph so that every edge A->B puts A before B (Kahn's algorithm), grouped into stages: stage 1 has no prerequisites, stage 2 needs only stage-1 nodes, and so on. Use it for questions like 'In what order should these courses be taken?', 'What must I take before Deep Learning, and in what order?' (pass node), 'What is the minimum number of semesters?' (number_of_stages) or 'Does this dependency graph have a cycle?'. Works on directed graphs only (weights are ignored); undirected graphs return an error. Returns is_dag, the order as nodes with position and stage, and stage sizes. If the graph has a cycle, no order exists: it returns is_dag false and a shortest cycle instead.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the directed graph to order, e.g. 'courses'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id. If given, only this node and everything that must come before it (its ancestors) are ordered, ending with the node itself. Use lookup_node to find ids."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of nodes of the order to list (the counts always cover the whole graph).",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    },
+    {
+      "graph_id": "courses",
+      "node": "CS402"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 10
+    }
+  ]
+}

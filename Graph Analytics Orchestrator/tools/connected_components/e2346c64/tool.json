@@ -1,0 +1,44 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.e2346c64",
+  "author": "e2346c64",
+  "tier": "easy",
+  "category": "community",
+  "description": "Splits a graph into connected components (groups of nodes linked by some path) using BFS. Use for: Is the graph connected? How many separate parts are there? What is the largest connected part? Which component is node X in, and how big is it? Works on undirected graphs; on directed graphs it returns weakly connected components (directions ignored) - use strongly_connected_components if direction matters. Returns num_components, largest_size, isolated_nodes and the top_k largest components (rank, size, fraction, sample members). Each listed component is registered as a subgraph (its graph_id); result_graph_id is the largest component, so other tools can run on it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest components to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id; also reports the component containing this node. Use lookup_node to find ids."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "projects",
+      "node": "S01"
+    }
+  ]
+}

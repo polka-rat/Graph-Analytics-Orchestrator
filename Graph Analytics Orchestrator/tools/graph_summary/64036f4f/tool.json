@@ -1,0 +1,28 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.64036f4f",
+  "author": "64036f4f",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Summarises a directed or undirected, weighted or unweighted graph. Use it for questions about network size or connectedness. Returns node and edge counts, density, average degree, graph type, and directed in/out averages.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to summarise."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

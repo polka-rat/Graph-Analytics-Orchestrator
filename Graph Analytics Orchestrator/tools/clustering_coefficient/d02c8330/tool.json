@@ -1,0 +1,44 @@
+{
+  "name": "clustering_coefficient",
+  "implementation_id": "clustering_coefficient.d02c8330",
+  "author": "d02c8330",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Measures how tightly knit nodes' neighbourhoods are (local clustering coefficient = fraction of a node's neighbour pairs that are themselves connected). Use for questions like 'How tightly knit is Alice's circle?', 'Do X's friends know each other?', 'How clustered is this network?'. Give 'node' to get that node's clustering, triangle count and degree plus the graph average; omit it to get the graph's average clustering, transitivity (global clustering), triangle count and the top_k most clustered nodes. Works on undirected and directed graphs (direction is ignored); weights are ignored. Use lookup_node first to get node ids.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional exact node id whose local clustering you want. Omit for graph-level results."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many most-clustered nodes to list when no node is given.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

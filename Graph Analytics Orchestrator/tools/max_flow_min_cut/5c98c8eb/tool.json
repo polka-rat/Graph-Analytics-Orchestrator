@@ -1,0 +1,44 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.5c98c8eb",
+  "author": "5c98c8eb",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes maximum flow and a corresponding minimum cut in a directed graph using Edmonds-Karp.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the directed graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Source node ID"
+      },
+      "sink": {
+        "type": "string",
+        "description": "Sink node ID"
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "Maximum number of minimum-cut edges to include in the output, from 1 to 100."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "ABJ",
+      "sink": "ABQ"
+    }
+  ]
+}

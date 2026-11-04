@@ -1,0 +1,49 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.6e31812a",
+  "author": "6e31812a",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the degree distribution of a whole graph: how many nodes have each number of connections. Use it for questions about the overall shape of a network, such as 'do most nodes have only a few connections?', 'is there a small number of hubs?', 'what is the typical or average number of links?' or 'how many nodes are isolated?'. Works on directed and undirected, weighted or unweighted graphs (weights are ignored). On directed graphs, mode='total' counts in + out edges, 'in' counts incoming edges and 'out' counts outgoing edges. Returns min, max, mean and median degree, the most common degree, the number of isolated nodes, the share of nodes below the mean, and the histogram as rows {degree, count} (or degree ranges if bins is set). It does not rank individual nodes; use degree_centrality or node_degree for that.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'airports'."
+      },
+      "mode": {
+        "type": "string",
+        "description": "Which degree to count. 'total' (default) = all connections (in + out on directed graphs); 'in' = incoming edges; 'out' = outgoing edges. 'in' and 'out' work only on directed graphs.",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ],
+        "default": "total"
+      },
+      "bins": {
+        "type": "integer",
+        "description": "Optional. Group degrees into this many equal-width ranges instead of one row per degree, for a coarser view. Leave it out for the exact histogram.",
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "mode": "out"
+    },
+    {
+      "graph_id": "airports",
+      "bins": 10
+    }
+  ]
+}

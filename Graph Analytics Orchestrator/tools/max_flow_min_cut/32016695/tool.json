@@ -1,0 +1,67 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.32016695",
+  "author": "32016695",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes the maximum flow from a source node to a sink node with the Edmonds-Karp algorithm, and the minimum cut: the cheapest set of edges whose removal disconnects source from sink. Use for questions like 'where is the bottleneck between A and B?', 'how much capacity can flow from X to Y?', 'how many edges must fail before A is cut off from B?' (capacity='unit') or 'how many airline services link these airports at most?' (airports, capacity='airlines'). Works on directed graphs (flow follows edge direction) and undirected graphs (each edge carries flow either way), weighted or not. Returns the max flow value, the number of cut edges, the sizes of the two sides of the cut, and the top_k cut edges with the largest capacities. Max flow always equals the total capacity of the cut. Needs node ids: use lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Id of the node the flow starts from. Use lookup_node to find it from a name."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Id of the node the flow ends at; must differ from source. Use lookup_node to find it from a name."
+      },
+      "capacity": {
+        "type": "string",
+        "description": "What limits each edge: 'weight' (the edge weight; 1 on unweighted graphs), 'unit' (every edge carries 1, so the answer counts edge-disjoint paths), or the name of a numeric edge attribute such as 'airlines' in airports.",
+        "default": "weight"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many cut edges to list, largest capacity first. The counts always cover all of them.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "sink": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "sink": "LIS",
+      "capacity": "airlines",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "source": "c12",
+      "sink": "c74"
+    },
+    {
+      "graph_id": "courses",
+      "source": "CS101",
+      "sink": "CS402",
+      "capacity": "unit"
+    }
+  ]
+}

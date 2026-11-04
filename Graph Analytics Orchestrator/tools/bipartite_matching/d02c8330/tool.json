@@ -1,0 +1,46 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.d02c8330",
+  "author": "d02c8330",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds a maximum matching in a bipartite graph with the Hopcroft-Karp algorithm: the largest set of edges that pairs nodes of one side with nodes of the other, each node used at most once. Use for assignment questions like 'What is the best assignment of students to projects?', 'How many students can get a project?', 'Can everyone be matched?'. The two sides come from a node attribute (default 'side', e.g. student/project) or, if absent, from 2-colouring; returns an error if the graph is not bipartite. Returns the matching size, side sizes, whether the matching is perfect, the matched pairs (sorted by left node id, up to top_k) and unmatched nodes on each side. Works on undirected graphs (directed graphs are treated as undirected); weights are ignored.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the bipartite graph to analyse, e.g. 'projects'."
+      },
+      "side_attribute": {
+        "type": "string",
+        "description": "Node attribute naming each node's side.",
+        "default": "side"
+      },
+      "left_side": {
+        "type": "string",
+        "description": "Optional value of side_attribute to treat as the left side (e.g. 'student'); pairs are listed as left -> right. Defaults to the alphabetically first value."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many matched pairs and unmatched nodes to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "projects",
+      "left_side": "student",
+      "top_k": 20
+    }
+  ]
+}

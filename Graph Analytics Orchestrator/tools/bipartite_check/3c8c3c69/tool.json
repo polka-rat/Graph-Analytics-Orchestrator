@@ -1,0 +1,39 @@
+{
+  "name": "bipartite_check",
+  "implementation_id": "bipartite_check.3c8c3c69",
+  "author": "3c8c3c69",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Checks whether a graph is bipartite: whether its nodes can be split into two groups so that every edge joins the two groups and no edge lies inside a group. Use it for questions like 'can the nodes be split into two groups with no links inside a group?', 'is this a two-sided network such as students and projects?' or 'can these be scheduled in two rounds with no conflicts?'. Works on undirected and directed graphs (direction is ignored); weights are ignored. If bipartite, returns the size and first top_k nodes of each side, the number of separate parts, and an attribute that matches the sides if one exists; each side is registered as a subgraph (result_graph_id is the larger side). If not bipartite, returns an odd cycle that proves it, registered as a subgraph.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to check."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes of each side to list (each side's subgraph always holds all of them).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

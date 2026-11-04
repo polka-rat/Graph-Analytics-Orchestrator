@@ -1,0 +1,36 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.81c01533",
+  "author": "81c01533",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts small 3-node patterns (motifs) in a graph. On directed graphs it returns the full 16-type triad census, e.g. feed-forward loops (030T), feedback cycles (030C), chains (021C), fan-outs (021D) and fan-ins (021U). On undirected graphs it returns the number of triangles and open triads (two edges, third missing). Use it for questions like 'Which small patterns are most common?', 'How many triangles does this network have?' or 'Are there feed-forward loops?'. Works on directed and undirected graphs; edge weights are ignored. Returns every motif with its count, sorted most common first. On undirected graphs it also returns the top_k nodes that are part of the most triangles.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes (by number of triangles) to return. Only used on undirected graphs.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "greedy_coloring",
+  "implementation_id": "greedy_coloring.4ebce3f0",
+  "author": "4ebce3f0",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Colours the nodes so that no two connected nodes share a colour, using a greedy algorithm, and reports how many colours it needed. Use it for scheduling and conflict questions: 'how many exam slots avoid all clashes?', 'split these nodes into groups with no links inside a group', 'what colour/slot does node X get?'. The number of colours is an upper bound on the chromatic number (the true minimum), not always the minimum. Works on undirected graphs, weighted or not (weights ignored); on directed graphs edge direction is ignored. Returns num_colors, the strategy used, and each colour class with its size and up to top_k member nodes; with 'node' it also returns that node's colour.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to colour."
+      },
+      "strategy": {
+        "type": "string",
+        "enum": [
+          "largest_first",
+          "dsatur",
+          "smallest_last"
+        ],
+        "description": "Order in which nodes are coloured: largest_first (highest degree first), dsatur (most differently coloured neighbours first; often uses fewer colours) or smallest_last.",
+        "default": "largest_first"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many member nodes to list for each colour class.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional exact node id (use lookup_node to find it); the result then also gives this node's colour."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "strategy": "dsatur",
+      "top_k": 5
+    },
+    {
+      "graph_id": "projects",
+      "node": "S01"
+    }
+  ]
+}

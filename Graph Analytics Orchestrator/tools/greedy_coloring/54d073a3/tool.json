@@ -1,0 +1,50 @@
+{
+  "name": "greedy_coloring",
+  "implementation_id": "greedy_coloring.54d073a3",
+  "author": "54d073a3",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Colours the nodes with a greedy algorithm so that no two adjacent nodes share a colour, and reports how many colours were used. Use it for scheduling or conflict questions such as 'how many exam slots avoid all clashes?' or 'what is the smallest number of groups with no connected pair inside a group?' (the result is an upper bound on the true minimum). Works on directed and undirected graphs; edge direction and weights are ignored. Strategy 'largest_first' (default) colours high-degree nodes first, 'dsatur' often uses fewer colours. Returns num_colors, the size of each colour class, and up to top_k nodes with their colour (0, 1, 2, ...).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to colour."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes (in colouring order, highest priority first) to list with their colour.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "strategy": {
+        "type": "string",
+        "description": "Node ordering: 'largest_first' (highest degree first, default) or 'dsatur' (most differently coloured neighbours first).",
+        "enum": [
+          "largest_first",
+          "dsatur"
+        ],
+        "default": "largest_first"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "strategy": "dsatur",
+      "top_k": 21
+    }
+  ]
+}

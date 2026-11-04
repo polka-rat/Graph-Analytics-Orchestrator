@@ -1,0 +1,37 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.ab9fb3a3",
+  "author": "ab9fb3a3",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds maximal cliques with pivoted Bron-Kerbosch: every pair is connected and no other node can extend the clique. Use to find fully connected groups and the largest such group. Supports nonempty undirected graphs, including disconnected graphs; ignores weights and self-loops. Returns the largest top_k cliques, sorted by size descending then lexicographic member IDs, with complete labelled membership and a registered graph_id for each. result_graph_id identifies the first/largest clique. Enumeration is exponential; prefer small graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of a graph registered in the provided store."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest maximal cliques to return, each with full membership.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 3
+    }
+  ]
+}

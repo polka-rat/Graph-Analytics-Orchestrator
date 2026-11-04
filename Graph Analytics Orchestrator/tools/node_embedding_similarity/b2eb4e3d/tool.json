@@ -1,0 +1,71 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.b2eb4e3d",
+  "author": "b2eb4e3d",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Embeds every node with a deterministic spectral embedding (eigenvectors of the degree-normalised adjacency matrix, scaled by eigenvalue^walk_length) and ranks nodes by cosine similarity of their embeddings, so nodes with similar neighbourhoods score high. Use it for questions like 'which nodes are structurally most similar to X?', 'who plays the same role as X in the network?' or 'which two nodes are most alike?'. If node is given, returns the top_k nodes most similar to it (each with id, label and score from -1 to 1), best first, ties broken by node id. If node is omitted, returns the top_k most similar node pairs. Works on directed (directions ignored) and undirected graphs; edges count 1 unless use_weights is true. A node with no edges has similarity 0 to everything. Handles graphs of up to 1500 nodes. When a question names a place or person, find its id with lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, for example 'airports' or 'karate'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the query node, for example 'MAA'. Must be an id, not a label; find it with lookup_node. If omitted, the most similar pairs of nodes are returned."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many results to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Number of embedding dimensions (largest eigenvalues kept; tied eigenvalues are never split).",
+        "default": 16,
+        "minimum": 1,
+        "maximum": 128
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Random-walk length t: eigenvectors are scaled by eigenvalue^t. Larger values smooth over wider neighbourhoods.",
+        "default": 2,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "Treat edge weights as connection strength (must be finite and non-negative). Default false: every edge counts 1.",
+        "default": false
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Accepted for compatibility and ignored: the method is deterministic.",
+        "default": 0
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5,
+      "dimensions": 32
+    }
+  ]
+}

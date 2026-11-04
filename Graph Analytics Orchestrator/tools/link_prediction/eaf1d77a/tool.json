@@ -1,0 +1,59 @@
+{
+  "name": "link_prediction",
+  "implementation_id": "link_prediction.eaf1d77a",
+  "author": "eaf1d77a",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Predicts likely missing or future edges: scores every pair of nodes that is not yet connected and returns the top_k most likely new links. Use for questions like 'Who should Alice connect with next?', 'Which new route is most likely to open?' or 'Which links are probably missing from this network?'. Give node to get the best new partners for one node; leave it out to rank pairs across the whole graph. Methods: adamic_adar (default; shared neighbours, rare shared neighbours count more), resource_allocation, jaccard, common_neighbors and preferential_attachment (product of degrees). Works on undirected graphs and on directed graphs, which are scored on their undirected view. Returns pairs as source and target (id and label) with the score and the number of common neighbours; pairs with score 0 are left out. Node ids must be exact: use lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse"
+      },
+      "method": {
+        "type": "string",
+        "enum": [
+          "adamic_adar",
+          "resource_allocation",
+          "jaccard",
+          "common_neighbors",
+          "preferential_attachment"
+        ],
+        "default": "adamic_adar",
+        "description": "Scoring method for a candidate pair"
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node ID: only predict new links for this node. Leave out to rank pairs over the whole graph"
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "How many predicted links to return"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "method": "jaccard",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "method": "resource_allocation",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.efd53284",
+  "author": "efd53284",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds nodes whose structural position is most similar to a given node using DeepWalk-style random-walk embeddings. It generates seeded random walks on the symmetrised graph, counts node co-occurrences within a sliding window, builds a positive pointwise mutual information (PPMI) matrix, factorises it with a symmetric eigendecomposition, and ranks every other node by cosine similarity to the query node. Use it for questions such as which airports have a route profile like Chennai, which characters play a similar role in Les Miserables, or which club members resemble the instructor. Works on directed and undirected graphs, weighted or unweighted; walks use graph structure and ignore edge magnitudes. The seed parameter defaults to 0, so output is deterministic. Returns the top_k nearest nodes with cosine scores in [-1, 1], excluding the query node; result_graph_id is null.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse"
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the query node"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many similar nodes to return, ordered by decreasing similarity.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Number of embedding dimensions.",
+        "default": 16,
+        "minimum": 2,
+        "maximum": 64
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Number of nodes visited by each random walk.",
+        "default": 20,
+        "minimum": 2,
+        "maximum": 40
+      },
+      "walks_per_node": {
+        "type": "integer",
+        "description": "Number of random walks started from every node.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 20
+      },
+      "window": {
+        "type": "integer",
+        "description": "Context window size used when counting co-occurrences.",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for walk generation; the same seed gives the same output.",
+        "default": 0
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 3
+    }
+  ]
+}

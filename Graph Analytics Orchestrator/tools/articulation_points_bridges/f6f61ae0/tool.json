@@ -1,0 +1,37 @@
+{
+  "name": "articulation_points_bridges",
+  "implementation_id": "articulation_points_bridges.f6f61ae0",
+  "author": "f6f61ae0",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Finds articulation points and bridges: vertices or edges whose removal increases the number of connected components. Use to identify single points of failure in an undirected network. Supports weighted and unweighted undirected graphs, ignoring weights; rejects directed graphs. Returns sorted node and edge references, full counts and a truncation flag, with up to top_k entries per list.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries per result list; byte limit may reduce this further.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 5
+    }
+  ]
+}

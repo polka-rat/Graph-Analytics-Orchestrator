@@ -1,0 +1,43 @@
+{
+  "name": "pagerank",
+  "implementation_id": "pagerank.29a7a55d",
+  "author": "29a7a55d",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by overall importance using PageRank by power iteration: a node is important if many important nodes link to it. Use for questions about the most influential, most important or most central nodes overall, like 'which airport is the strongest hub?' or 'which papers are most influential?'. Works on directed and undirected graphs; edge weights act as link strengths (on unweighted graphs all links count equally). Returns the top_k nodes with their scores rounded to 6 decimals, sorted by score.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "damping": {
+        "type": "number",
+        "description": "Probability of following a link instead of jumping to a random node; between 0 and 1.",
+        "default": 0.85,
+        "minimum": 0,
+        "maximum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

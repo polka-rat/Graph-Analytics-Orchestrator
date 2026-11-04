@@ -1,0 +1,41 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.c1fb2ea9",
+  "author": "c1fb2ea9",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Computes betweenness centrality for all nodes using Brandes' algorithm. Ranks nodes by the fraction of all shortest paths passing through them, identifying key bridges and communication brokers. Works on directed and undirected graphs. Returns top_k nodes sorted by score with deterministic tie-breaking.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "Whether to normalize betweenness scores by the number of possible node pairs.",
+        "default": true
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

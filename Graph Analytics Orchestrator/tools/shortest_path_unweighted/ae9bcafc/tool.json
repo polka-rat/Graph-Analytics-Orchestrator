@@ -1,0 +1,42 @@
+{
+  "name": "shortest_path_unweighted",
+  "implementation_id": "shortest_path_unweighted.ae9bcafc",
+  "author": "ae9bcafc",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Finds a path with the fewest edges between two nodes using breadth-first search. Use it for minimum-hop, fewest-flight, or degrees-of-separation questions. It supports directed and undirected graphs and deliberately ignores edge weights. It returns the labelled path and its hop count.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Exact id of the starting node; use lookup_node if only a name is known."
+      },
+      "target": {
+        "type": "string",
+        "description": "Exact id of the destination node; use lookup_node if only a name is known."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    }
+  ]
+}

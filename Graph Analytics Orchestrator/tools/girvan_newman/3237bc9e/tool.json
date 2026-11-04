@@ -1,0 +1,45 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.3237bc9e",
+  "author": "3237bc9e",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities (groups of nodes more connected to each other than to the rest) with the Girvan-Newman method: it repeatedly removes the edge with the highest edge betweenness, so the graph breaks apart along the links between groups. Use it for questions like 'how does this network break apart into groups?' or 'which two factions does it split into?' (num_communities=2). Only for small graphs (up to a few hundred edges); for big ones such as airports use louvain or label_propagation. Works on undirected graphs; directed graphs are treated as undirected. Returns the communities, largest first, each with its size, some members and a graph_id, plus the modularity of the split. result_graph_id is the largest community.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "num_communities": {
+        "type": "integer",
+        "description": "Optional: stop at the first split with this many communities. Leave it out to get the split with the highest modularity.",
+        "minimum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "num_communities": 2
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

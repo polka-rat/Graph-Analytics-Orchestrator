@@ -1,0 +1,25 @@
+{
+  "name": "topological_sort",
+  "implementation_id": "topological_sort.c1fb2ea9",
+  "author": "c1fb2ea9",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Computes a topological ordering of nodes in a directed acyclic graph (DAG) such that every directed edge u->v has u appearing before v in the order. If the graph contains a directed cycle, detects and returns the cycle. Use this tool to answer questions about prerequisite orders, dependency resolution, task sequencing, or detecting circular dependencies in directed networks. Returns an ordered list of node references.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the directed acyclic graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    }
+  ]
+}

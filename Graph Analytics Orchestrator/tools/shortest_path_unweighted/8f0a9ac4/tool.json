@@ -1,0 +1,42 @@
+{
+  "name": "shortest_path_unweighted",
+  "implementation_id": "shortest_path_unweighted.8f0a9ac4",
+  "author": "8f0a9ac4",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Computes the shortest paths in an unweighted graph. Useful for finding the most efficient routes between nodes in a network.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "src": {
+        "type": "string",
+        "description": "Id of the source node."
+      },
+      "dest": {
+        "type": "string",
+        "description": "Id of the destination node."
+      }
+    },
+    "required": [
+      "graph_id",
+      "src",
+      "dest"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "src": "m1",
+      "dest": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "src": "JFK",
+      "dest": "LAX"
+    }
+  ]
+}

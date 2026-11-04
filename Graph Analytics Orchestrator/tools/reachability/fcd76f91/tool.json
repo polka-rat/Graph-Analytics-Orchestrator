@@ -1,0 +1,53 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.fcd76f91",
+  "author": "fcd76f91",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Answers yes or no: does any path exist from a source node to a target node? Use it for questions like 'Can you get from X to Y at all?', 'Is Y reachable from X?' or 'Are X and Y connected?'. Uses breadth-first search. On directed graphs (e.g. airports) it follows edge directions by default, so A->B reachable does not imply B->A; set ignore_direction=true to treat edges as two-way. Works on undirected graphs too; edge weights are ignored. Returns reachable (true/false), the number of hops on the shortest witness path and that path as a list of nodes (id and label); when unreachable, how many nodes the source can reach. Needs node ids: call lookup_node first to turn names into ids.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA'. Use lookup_node to find it from a name."
+      },
+      "target": {
+        "type": "string",
+        "description": "Id of the node to reach, e.g. 'LIS'. Use lookup_node to find it from a name."
+      },
+      "ignore_direction": {
+        "type": "boolean",
+        "description": "Only for directed graphs: true treats every edge as two-way (asks whether the nodes are connected at all).",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    },
+    {
+      "graph_id": "courses",
+      "source": "CS102",
+      "target": "CS101",
+      "ignore_direction": true
+    }
+  ]
+}

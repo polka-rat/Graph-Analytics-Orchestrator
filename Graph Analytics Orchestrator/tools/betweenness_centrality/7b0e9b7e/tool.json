@@ -1,0 +1,36 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.7b0e9b7e",
+  "author": "7b0e9b7e",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Ranks nodes by betweenness centrality, computed exactly with Brandes' algorithm: the share of shortest paths between other pairs of nodes that pass through a node. High scores mark brokers, bridges and transfer hubs that connect different parts of the network. Use for questions like 'who are the key brokers between groups?', 'which airport is the most important transfer hub?' or 'which node, if removed, would disrupt the most routes?'. Works on undirected and directed graphs (directed graphs follow edge direction). Edge weights are ignored: shortest paths are counted in hops. Returns the top_k nodes with their normalized betweenness score (0 to 1, as in NetworkX; higher = more paths go through the node).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the highest-betweenness nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

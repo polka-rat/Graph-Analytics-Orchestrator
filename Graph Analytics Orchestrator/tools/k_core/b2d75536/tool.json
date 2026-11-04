@@ -1,0 +1,46 @@
+{
+  "name": "k_core",
+  "implementation_id": "k_core.b2d75536",
+  "author": "b2d75536",
+  "tier": "medium",
+  "category": "community",
+  "description": "Computes the core number of every node and returns one k-core: the largest set of nodes in which each one is joined to at least k others of the set. Use it for questions about the dense, tightly connected heart of a network, such as 'what is the tightly connected core?', 'which airports form the well connected hub group?', 'how deep is this node in the network?' or 'who survives if everyone with fewer than 5 links is removed, over and over?'. With no k it returns the densest (highest) non-empty core; give k to ask for a particular one. Works on directed and undirected graphs; weights are ignored, and on a directed graph a node's degree is its in-degree plus its out-degree. Returns the core number of the top members, how many nodes have each core number, the size and edge count of the chosen core, and registers that core as a new graph in result_graph_id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Which core to return: every member has at least k links to other members. Leave it out for the densest core the graph has.",
+        "minimum": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many members of the core to list, highest core number first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "k": 4,
+      "top_k": 5
+    }
+  ]
+}

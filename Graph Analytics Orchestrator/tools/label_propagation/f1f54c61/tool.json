@@ -1,0 +1,44 @@
+{
+  "name": "label_propagation",
+  "implementation_id": "label_propagation.f1f54c61",
+  "author": "f1f54c61",
+  "tier": "medium",
+  "category": "community",
+  "description": "Detects communities in a graph using deterministic label propagation. Use this tool when asked to identify natural groups or clusters of nodes in a network, discover which nodes belong to the same community, or understand how a network is divided into groups. Example questions include 'What natural groups exist here?', 'Which nodes belong to the same community?', and 'How is this network clustered?'. Supports directed and undirected graphs, using incoming neighbors for directed graphs and all adjacent neighbors for undirected graphs. Edge weights contribute to label influence, with larger weights contributing more influence. Ties are resolved by choosing the smallest label, and propagation stops when labels stabilize or after 100 iterations. Returns up to top_k communities ordered by descending size, including each community's size, up to 10 displayed member nodes, and registered subgraph ID. Each registered community subgraph contains all members of that community.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 25
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 60
+    }
+  ]
+}

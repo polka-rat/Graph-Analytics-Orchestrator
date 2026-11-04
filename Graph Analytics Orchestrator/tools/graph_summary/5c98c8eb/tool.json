@@ -1,0 +1,28 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.5c98c8eb",
+  "author": "5c98c8eb",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes basic structural statistics for a graph, including node count, edge count, density, average degree, directedness, and weightedness.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to summarize."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

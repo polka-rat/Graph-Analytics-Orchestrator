@@ -1,0 +1,54 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.b2d75536",
+  "author": "b2d75536",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities with the Louvain method, which greedily maximises modularity: groups of nodes with many links inside the group and few to the rest. Use it for questions such as 'what are the communities here, and how strong are they?', 'which groups of airports fly mostly among themselves?', 'do these characters split into clusters?' or 'is there real community structure in this network?'. Works on directed and undirected, weighted and unweighted graphs; edge weights count, and a directed graph is treated as undirected because modularity is defined that way. Returns the number of communities, the modularity score (above about 0.3 means clear structure), and the largest communities with their size, internal edge count and best connected members. Every community returned is registered as its own graph, and result_graph_id is the largest one, so another tool can analyse it. Deterministic: the seed only fixes the order in which nodes are visited.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "resolution": {
+        "type": "number",
+        "description": "How fine the split should be. 1.0 is standard modularity; above 1 gives more, smaller communities, below 1 gives fewer, larger ones.",
+        "default": 1.0,
+        "minimum": 0.01,
+        "maximum": 100
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Fixes the random order in which nodes are visited, so results repeat exactly. Any value gives a valid split; change it to check how stable the communities are.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many communities to return, largest first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "resolution": 1.0,
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "seed": 0,
+      "top_k": 5
+    }
+  ]
+}

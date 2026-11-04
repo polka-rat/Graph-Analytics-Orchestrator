@@ -1,0 +1,53 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.1e59ba80",
+  "author": "1e59ba80",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes the maximum flow from a source node to a sink node (Edmonds-Karp) and the minimum cut: the cheapest set of edges whose removal disconnects sink from source. Use for questions like 'Where is the bottleneck between X and Y?', 'How much can flow from X to Y?' or 'Which routes would have to be cut to separate X from Y?'. Works on directed and undirected graphs (an undirected edge carries flow both ways). Capacity comes from edge weight by default (1 on unweighted graphs); use capacity='unit' to count edges, or a numeric edge attribute such as 'airlines' (in airports, weight is distance in km). Returns max_flow, the cut edges sorted by capacity (from source side to sink side), and the sizes of the two sides. Max flow 0 means no path exists.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Exact id of the node the flow starts from; use lookup_node to find it from a name."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Exact id of the node the flow ends at (must differ from source); use lookup_node to find it from a name."
+      },
+      "capacity": {
+        "type": "string",
+        "description": "What limits flow on each edge: 'weight' (edge weight), 'unit' (every edge 1, so the cut counts edges), or a numeric edge attribute name such as 'airlines'.",
+        "default": "weight"
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "sink": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "sink": "LIS",
+      "capacity": "airlines"
+    },
+    {
+      "graph_id": "lesmis",
+      "source": "c01",
+      "sink": "c50"
+    }
+  ]
+}

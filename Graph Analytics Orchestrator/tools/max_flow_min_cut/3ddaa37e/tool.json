@@ -1,0 +1,44 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.3ddaa37e",
+  "author": "3ddaa37e",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes maximum flow and a minimum cut between distinct source and sink nodes using Edmonds-Karp. Use for capacity and bottleneck questions on directed or undirected graphs. Treats finite nonnegative edge weights as capacities; unweighted edges have capacity 1. Returns flow value, cut capacity and bounded previews of cut edges and both partitions. Distance weights are not physical transport capacities.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries in each output preview. Full scalar totals are unaffected.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "source": {
+        "type": "string",
+        "description": "Exact source node ID. Resolve names with lookup_node."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Exact sink node ID. Resolve names with lookup_node."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses",
+      "source": "CS101",
+      "sink": "CS401"
+    }
+  ]
+}

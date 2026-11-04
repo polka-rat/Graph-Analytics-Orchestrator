@@ -1,0 +1,28 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.c1fb2ea9",
+  "author": "c1fb2ea9",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the degree distribution (histogram of node degrees) for a graph. Returns a list where each index represents a degree value and each element is the count of nodes having that degree, matching NetworkX degree_histogram. For directed graphs, degrees are total degrees (in-degree plus out-degree). Use this tool to answer questions about overall network connectivity, whether most nodes have few or many connections, the frequency of degree values, and degree spread across the graph.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

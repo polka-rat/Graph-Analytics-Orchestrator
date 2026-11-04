@@ -1,0 +1,36 @@
+{
+  "name": "minimum_spanning_tree",
+  "implementation_id": "minimum_spanning_tree.96e40bd2",
+  "author": "96e40bd2",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Computes the minimum spanning tree of an undirected graph with Kruskal's algorithm: the cheapest set of edges that connects all nodes, with its total weight. Use for questions like 'what is the cheapest way to connect all the sites', 'what is the minimum total length of links needed to keep everything connected', or 'which edges form the backbone of the network'. Works on undirected graphs only, weighted or unweighted (unweighted edges count as 1); directed graphs such as airports return an error. If the graph is disconnected it returns a minimum spanning forest. Returns the total weight in the summary, the top_k heaviest tree edges (source, target, weight, each node with id and label), and result_graph_id, the id of the registered tree so other tools can run on it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of an undirected graph, e.g. 'lesmis' or 'karate'. Use list_graphs to see which graphs are undirected and weighted."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many tree edges to list in the result, heaviest first. The whole tree is always registered in result_graph_id.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "lesmis"
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 5
+    }
+  ]
+}

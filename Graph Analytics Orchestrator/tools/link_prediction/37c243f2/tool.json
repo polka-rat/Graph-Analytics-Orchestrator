@@ -1,0 +1,44 @@
+{
+  "name": "link_prediction",
+  "implementation_id": "link_prediction.37c243f2",
+  "author": "37c243f2",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Ranks candidate missing links in directed or undirected graphs using common-neighbor, Jaccard, or Adamic-Adar similarity. Use it to suggest likely future connections between nodes. Returns endpoint node references, scores rounded to six decimals, and the selected similarity method.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "method": {
+        "type": "string",
+        "enum": [
+          "common_neighbors",
+          "jaccard",
+          "adamic_adar"
+        ],
+        "description": "Similarity measure used to score candidate links.",
+        "default": "adamic_adar"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of candidate links to return (1 to 100). Long lists may be shortened to keep the response under 8 KB.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "method": "common_neighbors",
+      "top_k": 5
+    }
+  ]
+}

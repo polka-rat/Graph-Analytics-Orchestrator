@@ -1,0 +1,58 @@
+{
+  "name": "link_prediction",
+  "implementation_id": "link_prediction.41c8e8e2",
+  "author": "41c8e8e2",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Predicts which pairs of currently unconnected nodes are most likely to become linked, using neighbourhood scores: adamic_adar (default), common_neighbors, jaccard, resource_allocation or preferential_attachment. Use it for questions like 'who should Alice connect with next?' or 'which links are probably missing?'. Give an optional node id to get suggestions only for that node; otherwise the best pairs graph-wide. Direction and weights are ignored (a pair counts as connected if an edge exists in either direction). Returns the top_k pairs as source/target nodes with a score.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate'."
+      },
+      "method": {
+        "type": "string",
+        "description": "Scoring method: adamic_adar, common_neighbors, jaccard, resource_allocation or preferential_attachment.",
+        "enum": [
+          "adamic_adar",
+          "common_neighbors",
+          "jaccard",
+          "resource_allocation",
+          "preferential_attachment"
+        ],
+        "default": "adamic_adar"
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: only suggest new links for this node. Use lookup_node to find an id from a name."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many predicted links to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "method": "jaccard",
+      "node": "m1",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

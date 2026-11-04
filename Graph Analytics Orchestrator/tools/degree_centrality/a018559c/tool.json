@@ -1,0 +1,36 @@
+{
+  "name": "degree_centrality",
+  "implementation_id": "degree_centrality.a018559c",
+  "author": "a018559c",
+  "tier": "easy",
+  "category": "centrality",
+  "description": "Ranks nodes by their unweighted number of incident connections, breaking ties by node ID. For directed graphs it reports in-degree, out-degree, and their sum; it works with directed and undirected graphs and returns at most top_k labeled nodes.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of highest-degree nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

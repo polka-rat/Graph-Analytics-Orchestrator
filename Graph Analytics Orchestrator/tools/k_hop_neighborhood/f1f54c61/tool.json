@@ -1,0 +1,61 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.f1f54c61",
+  "author": "f1f54c61",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds all nodes within at most k hops of a starting node. For directed graphs, traversal follows outgoing edges only, while for undirected graphs, traversal follows all neighbours. Edge weights do not affect hop distance. Returns the starting node, the shortest hop distance and label of each displayed node, and the total number of nodes in the complete neighborhood. The top_k parameter limits the number of nodes displayed in the result, ordered by distance from the starting node and then by node ID, to keep the output within the 8 KB limit. The tool registers an induced subgraph containing all nodes in the complete neighborhood and every edge between them, regardless of the top_k display limit. Useful for questions such as 'Who is within two hops of Alice?' Works with directed, undirected, weighted, and unweighted graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "ID of the starting node."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Maximum number of outgoing hops from the starting node. The starting node is included at distance 0.",
+        "minimum": 0,
+        "default": 2
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of nodes to display in the result.",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 10
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 3,
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "BLR",
+      "k": 2,
+      "top_k": 100
+    },
+    {
+      "graph_id": "karate",
+      "node": "m7",
+      "k": 6
+    }
+  ]
+}

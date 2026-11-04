@@ -1,0 +1,60 @@
+{
+  "name": "closeness_centrality",
+  "implementation_id": "closeness_centrality.7065a2b5",
+  "author": "7065a2b5",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by closeness centrality: how short their shortest-path distances to all other nodes are (inverse average distance, with the Wasserman-Faust correction for disconnected graphs). Use it for questions like 'who can reach everyone fastest?', 'which airport is most central / closest to all others?' or 'how central is X?' (pass node). Works on directed and undirected graphs, weighted or not. Distances are hop counts by default; set weighted=true to use edge weights (e.g. km). On directed graphs, direction='incoming' (default, as NetworkX) measures distance from the others to each node; use 'outgoing' for distance from each node to the others ('who can reach everyone'). Returns the top_k nodes with score (higher = more central), or for one node its score, rank, average distance and number of nodes reached.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the most central nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: return only this node's closeness and rank. Use lookup_node to find the id from a name."
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "true: use edge weights as distances (Dijkstra). false: count hops (breadth-first search).",
+        "default": false
+      },
+      "direction": {
+        "type": "string",
+        "description": "Directed graphs only. 'incoming': distance from the other nodes to this node. 'outgoing': distance from this node to the others. Ignored on undirected graphs.",
+        "enum": [
+          "incoming",
+          "outgoing"
+        ],
+        "default": "incoming"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "weighted": true,
+      "direction": "outgoing"
+    }
+  ]
+}

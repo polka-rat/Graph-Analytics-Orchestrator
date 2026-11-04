@@ -1,0 +1,47 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.7780ae37",
+  "author": "7780ae37",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Checks whether any path exists from a source node to a target node, using breadth-first search. Use it for yes/no connectivity questions such as 'can you get from X to Y at all?', 'is A connected to B?' or 'can course A lead to course B?'. Works on directed graphs (follows edge direction, so A reaching B does not imply B reaching A) and undirected graphs. Returns reachable (true/false), the number of hops, and one fewest-hop path as a list of nodes with ids and labels.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'airports', 'karate' or 'courses'."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the path starts (use lookup_node to find ids from names)."
+      },
+      "target": {
+        "type": "string",
+        "description": "Node id where the path should end (use lookup_node to find ids from names)."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "courses",
+      "source": "CS101",
+      "target": "CS102"
+    }
+  ]
+}

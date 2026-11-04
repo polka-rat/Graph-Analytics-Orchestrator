@@ -1,0 +1,42 @@
+{
+  "name": "label_propagation",
+  "implementation_id": "label_propagation.a018559c",
+  "author": "a018559c",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds communities by repeatedly assigning each node the most common label among its neighbors, using a seeded random order and tie-breaking. Directed edges are treated as undirected for community detection. It returns labeled community samples, registers each returned community as a subgraph, and exposes the largest community through result_graph_id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for reproducible node order and tie-breaking.",
+        "default": 0
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "seed": 7
+    }
+  ]
+}

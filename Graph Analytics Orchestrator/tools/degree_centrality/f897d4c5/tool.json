@@ -1,0 +1,32 @@
+{
+  "name": "degree_centrality",
+  "author": "f897d4c5",
+  "implementation_id": "degree_centrality.f897d4c5",
+  "version": "1.0.0",
+  "tier": "easy",
+  "category": "centrality",
+  "description": "Calculates the degree centrality of nodes in a graph and returns top_k results.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "The unique identifier of the graph to query."
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 10,
+        "maximum": 100,
+        "description": "Maximum number of highest centrality nodes to return (1-100)."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.8f0a9ac4",
+  "author": "8f0a9ac4",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Uses the Hopcroft-Karp algorithm to find a maximum-cardinality matching in a bipartite graph. It answers assignment questions such as the largest possible set of student-project pairs. The tool validates bipartiteness, treats directed edges as undirected for matching, and returns deterministic matched node references plus the matching size.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the bipartite graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of matched pairs to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 5
+    }
+  ]
+}

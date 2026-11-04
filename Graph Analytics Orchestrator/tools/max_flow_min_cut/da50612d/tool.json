@@ -1,0 +1,67 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.da50612d",
+  "author": "da50612d",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Maximum flow from a source node to a sink node (Edmonds-Karp) and the minimum cut that limits it. Use for questions like 'how much can flow / how many routes or edge-disjoint paths are there from A to B?', 'where is the bottleneck between A and B?', 'which links must be cut to separate A from B?'. Needs 'source' and 'sink' node ids (use lookup_node first). Edge capacity comes from 'capacity': 'weight' (default; on airports this is distance in km), 'unit' (every edge = 1, so the flow counts edge-disjoint paths and the cut is the fewest links to remove), or a numeric edge attribute such as 'airlines' on airports. Works on directed graphs (flow follows edge direction) and undirected graphs (an edge carries flow either way). Returns max_flow_value, the cut edges (largest capacity first, up to top_k, each with from/to node and capacity), the cut size and the sizes of the two sides.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the flow starts (from lookup_node)."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Node id where the flow ends (from lookup_node); must differ from source."
+      },
+      "capacity": {
+        "type": "string",
+        "description": "What limits each edge: 'weight' (edge weight), 'unit' (every edge carries 1), or the name of a numeric edge attribute such as 'airlines'.",
+        "default": "weight"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many minimum-cut edges to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "sink": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "sink": "LIS",
+      "capacity": "airlines"
+    },
+    {
+      "graph_id": "airports",
+      "source": "ATL",
+      "sink": "FRA",
+      "capacity": "unit",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "source": "CS101",
+      "sink": "CS401"
+    }
+  ]
+}

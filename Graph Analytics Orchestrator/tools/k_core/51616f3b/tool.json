@@ -1,0 +1,50 @@
+{
+  "name": "k_core",
+  "implementation_id": "k_core.51616f3b",
+  "author": "51616f3b",
+  "tier": "medium",
+  "category": "community",
+  "description": "Computes node core numbers using the Batagelj-Zaversnik algorithm and extracts the k-core induced subgraph. Supports two modes for directed graphs: 'total' (in-degree + out-degree) and 'undirected' (simple neighbor connections). Edge weights are ignored. By default, selects the main core (maximum k). The registered subgraph keeps the parent graph's direction. Returns selected core metrics, core distribution, component count, and ranked top nodes with their core numbers. Use for questions about the central core or cohesiveness of a network.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Core level to extract (non-negative integer). Defaults to the maximum core number (densest core).",
+        "minimum": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of top nodes to return in the preview list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "mode": {
+        "type": "string",
+        "description": "Degree mode on directed graphs: 'total' (in-degree + out-degree) or 'undirected' (treating pairs as simple links).",
+        "enum": [
+          "total",
+          "undirected"
+        ],
+        "default": "total"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "k": 3
+    }
+  ]
+}

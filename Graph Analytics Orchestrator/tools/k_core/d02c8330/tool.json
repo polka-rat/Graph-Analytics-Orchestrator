@@ -1,0 +1,50 @@
+{
+  "name": "k_core",
+  "implementation_id": "k_core.d02c8330",
+  "author": "d02c8330",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds the tightly connected core of a network by k-core decomposition. The k-core is the largest subgraph where every node has at least k neighbours inside it; a node's core number is the largest such k. Use for questions like 'What is the tightly connected core?', 'Which nodes form the densest core?', 'What is the core number of X?', 'Which nodes have at least 3 connections among themselves?'. Omit k to get the densest (maximum) core. Returns k, the maximum core number, core size and edge count, how many nodes have each core number, and the top_k core members (highest core number first). The k-core is registered as a subgraph and its id is returned in result_graph_id so other tools can analyse it. Works on undirected and directed graphs (direction is ignored); weights are ignored.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Minimum number of neighbours each node must have inside the core. Omit to use the maximum core number (the densest core).",
+        "minimum": 0
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional exact node id whose core number you also want."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many core members to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "k": 2,
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

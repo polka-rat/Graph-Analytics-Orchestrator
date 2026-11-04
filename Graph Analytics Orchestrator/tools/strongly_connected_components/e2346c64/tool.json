@@ -1,0 +1,45 @@
+{
+  "name": "strongly_connected_components",
+  "implementation_id": "strongly_connected_components.e2346c64",
+  "author": "e2346c64",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds the strongly connected components (SCCs) of a directed graph with Kosaraju's algorithm (two depth-first passes): maximal groups where every node can reach every other following edge directions. Use for: Which groups of airports/accounts all reach each other? Can you get from X to Y and back? Is the network strongly connected? Does a directed graph contain cycles (any SCC larger than 1)? Directed graphs only; for undirected graphs use connected_components. Returns num_components, largest_size, singleton and non-trivial counts, and the top_k largest SCCs (rank, size, fraction, sample members). Each listed SCC is registered as a subgraph (its graph_id); result_graph_id is the largest SCC.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of a directed graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest components to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id; also reports the SCC containing this node. Use lookup_node to find ids."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports"
+    },
+    {
+      "graph_id": "courses",
+      "top_k": 3
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 2
+    }
+  ]
+}

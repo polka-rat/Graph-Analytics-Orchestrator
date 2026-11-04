@@ -1,0 +1,79 @@
+{
+  "name": "personalized_pagerank",
+  "implementation_id": "personalized_pagerank.e7c02e9e",
+  "author": "e7c02e9e",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks every node by how relevant it is to one seed node (or a few seed nodes) using personalized PageRank: a random walk that follows links with probability damping and otherwise jumps back to the seed(s). Use for 'what is most relevant or closest to X?', 'which nodes are most related to Alice?' or 'what should be recommended near this node?'. Works on directed and undirected graphs; edge weights are used when present. Returns the top_k nodes with scores that sum to 1 over all nodes. The seed itself usually ranks first; set exclude_seeds=true to hide it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional seed node ID. Provide node, seeds, or both. Use lookup_node to find IDs from names."
+      },
+      "seeds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Optional list of additional seed node IDs. If node is omitted, provide at least one seed here. All distinct seeds share the teleport probability equally."
+      },
+      "damping": {
+        "type": "number",
+        "description": "Probability of following a link instead of jumping back to the seed(s); from 0 up to but not including 1. Higher values spread relevance further from the seed.",
+        "default": 0.85
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top-ranked nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "If true, heavier edges are followed more often (on weighted graphs only). Set false when weights are distances or costs rather than link strengths, as in the airports graph.",
+        "default": true
+      },
+      "exclude_seeds": {
+        "type": "boolean",
+        "description": "If true, leave the seed nodes out of the ranking so only other nodes are listed.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "top_k": 5,
+      "exclude_seeds": true
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "damping": 0.7,
+      "use_weights": false,
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "node": "CS101",
+      "seeds": [
+        "MA101"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.afc500fb",
+  "author": "afc500fb",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Extracts the one-hop ego network around a specified node, including the ego, its direct neighbors, and all edges among those nodes. Supports directed and undirected, weighted and unweighted graphs. Use it to inspect a person's immediate social circle or the local neighborhood of a graph node. Returns node references, node and edge counts, and the registered subgraph ID.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyze."
+      },
+      "node": {
+        "type": "string",
+        "description": "ID of the ego node whose one-hop neighborhood should be extracted."
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA"
+    }
+  ]
+}

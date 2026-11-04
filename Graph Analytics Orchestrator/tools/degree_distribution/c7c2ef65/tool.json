@@ -1,0 +1,42 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.c7c2ef65",
+  "author": "c7c2ef65",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Summarises how connections are spread over a whole graph: for each degree value, how many nodes have exactly that many edges, plus the minimum, maximum and mean degree. Use it for questions like 'how many nodes have only one connection', 'is the network dominated by a few hubs', 'what is the average number of friends' or 'how many airports have more than 100 departing routes'. Works on every graph; edge weights are ignored. On directed graphs, mode chooses which degree is counted: 'total' (in + out, the default), 'in' (edges arriving) or 'out' (edges leaving); undirected graphs only accept 'total'. Returns {mode, num_nodes, min_degree, max_degree, mean_degree, histogram}, where histogram is a list of {degree, count} sorted by degree, listing only degrees that occur. It does not name individual nodes: use node_degree or degree_centrality for that.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ],
+        "default": "total",
+        "description": "Which degree to count on a directed graph: 'total' (in + out), 'in' (edges arriving at a node) or 'out' (edges leaving it). Undirected graphs only accept 'total'."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    },
+    {
+      "graph_id": "airports",
+      "mode": "out"
+    }
+  ]
+}

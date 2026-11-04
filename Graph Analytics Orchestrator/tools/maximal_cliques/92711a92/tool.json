@@ -1,0 +1,55 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.92711a92",
+  "author": "92711a92",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds maximal cliques, groups of nodes where every member is linked to every other member, using Bron-Kerbosch with pivoting, and returns the largest ones first. Use it for questions like 'what is the largest group where everyone knows everyone?', 'which airports are all directly connected to each other?' or 'which cliques is Alice part of?'. Give node to list only cliques containing that node. Works on undirected graphs; on directed graphs edge direction is ignored. Weights are ignored. Returns the top_k cliques by size (each with its members' ids and labels and a graph_id), plus the total number of maximal cliques and the size of the largest. result_graph_id is the largest clique as a subgraph, so other tools can analyse it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: only return cliques that contain this node. Use lookup_node to find ids."
+      },
+      "min_size": {
+        "type": "integer",
+        "description": "Only return cliques with at least this many nodes (2 skips isolated nodes).",
+        "default": 2,
+        "minimum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many cliques to return, largest first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 3
+    },
+    {
+      "graph_id": "karate",
+      "node": "m34",
+      "min_size": 3
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 2
+    }
+  ]
+}

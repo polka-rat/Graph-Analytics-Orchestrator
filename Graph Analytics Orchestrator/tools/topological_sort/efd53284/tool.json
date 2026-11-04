@@ -1,0 +1,25 @@
+{
+  "name": "topological_sort",
+  "implementation_id": "topological_sort.efd53284",
+  "author": "efd53284",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Returns an ordering of a directed graph, or a directed cycle if one exists. For a directed acyclic graph (DAG) it returns a valid topological order: every node appears after all nodes that must come before it, using Kahn's algorithm with a heap so the order is deterministic. If the graph contains a directed cycle, it returns one cycle as a list of nodes in cycle order; the last node has an edge back to the first, and each node is flagged 'cycle'. Works on directed graphs, weighted or unweighted (weights are ignored) and on disconnected DAGs; undirected graphs return an error. Use it for prerequisite ordering, dependency checking, or detecting cycles.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the directed graph."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    }
+  ]
+}

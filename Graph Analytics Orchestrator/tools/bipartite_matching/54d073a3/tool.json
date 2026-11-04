@@ -1,0 +1,36 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.54d073a3",
+  "author": "54d073a3",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds a maximum matching in a bipartite graph with the Hopcroft-Karp algorithm: the largest set of edges in which no node is used twice. Use it for assignment questions such as 'what is the best assignment of students to projects?', 'how many students can get a project?' or 'which students are left without one?'. The graph must be bipartite (two groups, edges only between groups); otherwise an error explains why. Edge direction and weights are ignored. Returns matching_size, whether the matching is perfect, up to top_k matched pairs (left and right node) and up to top_k unmatched nodes.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of a bipartite graph, e.g. 'projects'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many matched pairs and how many unmatched nodes to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 100
+    }
+  ]
+}

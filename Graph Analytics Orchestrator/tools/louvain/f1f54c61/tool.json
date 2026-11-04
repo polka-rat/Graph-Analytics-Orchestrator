@@ -1,0 +1,47 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.f1f54c61",
+  "author": "f1f54c61",
+  "tier": "hard",
+  "category": "community",
+  "description": "Detects communities in undirected weighted or unweighted graphs using the Louvain multilevel modularity optimization algorithm. Use this tool to answer questions such as: 'What communities exist in this network?', 'Which nodes belong to the same community?', 'What are the largest communities in this graph?', 'How is this network divided into densely connected groups?', and 'What is the modularity of the detected community structure?'. The tool returns communities ordered by descending size, each community's size, up to 10 displayed member nodes, and a registered subgraph ID for each returned community. The overall modularity score is included in the summary. The top_k parameter controls the maximum number of communities returned. Supports undirected weighted and unweighted graphs, directed graphs are not supported.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of communities to return, ordered by descending size.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 3
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 2
+    }
+  ]
+}

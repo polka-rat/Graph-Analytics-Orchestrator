@@ -1,0 +1,48 @@
+{
+  "name": "betweenness_centrality",
+  "implementation_id": "betweenness_centrality.f6f61ae0",
+  "author": "f6f61ae0",
+  "tier": "hard",
+  "category": "centrality",
+  "description": "Ranks nodes by exact Brandes betweenness: the fraction of shortest paths between other nodes passing through each node. Use to find brokers between groups. Supports directed and undirected graphs. By default weights are ignored; weighted=true treats finite positive weights as distances. Returns up to top_k node references with six-decimal scores, ordered by descending score then ascending ID. Endpoints are excluded.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries per result list; byte limit may reduce this further.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "Normalize by possible endpoint pairs, including unreachable pairs.",
+        "default": true
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Treat edge weights as positive distances; false counts hops.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "weighted": true
+    }
+  ]
+}

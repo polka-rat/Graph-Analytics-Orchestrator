@@ -1,0 +1,54 @@
+{
+  "name": "personalized_pagerank",
+  "implementation_id": "personalized_pagerank.c52598eb",
+  "author": "c52598eb",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks every node by how relevant it is to one seed node, using personalized PageRank: a random walk that follows edges (in proportion to edge weight on weighted graphs) and keeps jumping back to the seed. Use it for questions like 'What is most relevant to this node?', 'Which airports are most closely tied to Delhi?' or 'Who is in the instructor's inner circle?', not for global importance. Works on directed and undirected, weighted and unweighted graphs. The seed must be a node id (use lookup_node to get it from a name). Returns the top_k nodes with id, label and score (scores sum to 1 over all nodes); the seed itself is usually first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the seed node, e.g. 'DEL' in airports or 'm1' in karate."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the highest-scoring nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "alpha": {
+        "type": "number",
+        "description": "Probability of following an edge at each step instead of jumping back to the seed; must be strictly between 0 and 1.",
+        "default": 0.85
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "DEL",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c01",
+      "top_k": 5,
+      "alpha": 0.7
+    }
+  ]
+}

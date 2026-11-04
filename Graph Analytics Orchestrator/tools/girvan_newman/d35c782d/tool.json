@@ -1,0 +1,60 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.d35c782d",
+  "author": "d35c782d",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities (tightly connected groups of nodes) with the Girvan-Newman method: it repeatedly removes the edge that lies on the most shortest paths, so the graph falls apart into groups, and it keeps the split with the best modularity (0.3 to 0.7 means clear community structure). Use it for 'which groups are in this network?', 'split this network into 3 communities' or 'who belongs with whom?'. Give n_communities to get exactly that many groups instead of the best split. Best on small graphs (a few hundred edges); a larger graph still runs but the answer warns it may take more than 30 seconds. Directed graphs are treated as undirected unless use_direction is true; edge weights are ignored unless use_weights is true (then used as distances). Returns the communities, largest first (up to top_k), each with its size, members and its own subgraph id; the largest is registered as result_graph_id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'lesmis'. Keep it small: runtime grows quickly with the number of edges."
+      },
+      "n_communities": {
+        "type": "integer",
+        "description": "Optional number of communities wanted (2 or more). If omitted, the split with the best modularity is returned.",
+        "minimum": 2
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "If true, edge weights are used as distances when finding shortest paths (they must be above 0). If false (default), every edge counts the same.",
+        "default": false
+      },
+      "use_direction": {
+        "type": "boolean",
+        "description": "For directed graphs only: true follows edge direction when finding shortest paths; false (default) ignores direction. Ignored on undirected graphs.",
+        "default": false
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many communities to list, largest first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "n_communities": 4
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "n_communities": 3,
+      "use_direction": true
+    }
+  ]
+}

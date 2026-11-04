@@ -1,0 +1,25 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.8809b513",
+  "author": "8809b513",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds a maximum-cardinality matching in an undirected bipartite graph using Hopcroft\u2013Karp. Use it to assign students to projects they are eligible for, or to pair nodes across two groups without reusing either endpoint. When nodes have side attributes named student and project, results use those names; otherwise the tool detects the two sides. Edge weights are ignored. Returns the matched pairs, matching size, and unmatched nodes. Reports an error for directed or non-bipartite graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the undirected bipartite graph to match."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    }
+  ]
+}

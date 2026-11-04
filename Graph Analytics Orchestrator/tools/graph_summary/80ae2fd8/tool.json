@@ -1,0 +1,28 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.80ae2fd8",
+  "author": "80ae2fd8",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Summarizes a graph's structural properties, including node count, edge count, directedness, weighted status, density, and connected components. For connected, undirected, unweighted graphs, also reports diameter, radius, and average shortest-path length. Path metrics are returned as null for directed, weighted, or disconnected graphs under the current implementation.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

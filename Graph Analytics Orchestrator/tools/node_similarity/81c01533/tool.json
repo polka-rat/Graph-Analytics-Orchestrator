@@ -1,0 +1,37 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.81c01533",
+  "author": "81c01533",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes Jaccard similarity score and common neighbors between two specific nodes. Use when comparing connection overlap or similarity between two target entities (e.g., 'How similar are Alice and Bob?' or 'What is the network overlap between node A and node B?'). Works on directed (compares out-neighbors), undirected, and weighted graphs (ignores edge weights). Returns number of common neighbors and the overall Jaccard score.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node1": {
+        "type": "string",
+        "description": "ID or label of the first node to compare."
+      },
+      "node2": {
+        "type": "string",
+        "description": "ID or label of the second node to compare."
+      }
+    },
+    "required": [
+      "graph_id",
+      "node1",
+      "node2"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "node1": "JFK",
+      "node2": "LAX"
+    }
+  ]
+}

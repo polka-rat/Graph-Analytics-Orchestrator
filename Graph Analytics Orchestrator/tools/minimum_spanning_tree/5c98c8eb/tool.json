@@ -1,0 +1,36 @@
+{
+  "name": "minimum_spanning_tree",
+  "implementation_id": "minimum_spanning_tree.5c98c8eb",
+  "author": "5c98c8eb",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Computes a minimum spanning tree for a connected undirected graph, or a minimum spanning forest for a disconnected undirected graph, using Kruskal's algorithm. Returns selected edges, their total weight, component count, and a registered result subgraph. The top_k parameter limits the number of edges displayed in the result.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of selected edges to display.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "hits",
+  "implementation_id": "hits.f9857550",
+  "author": "f9857550",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Computes HITS (Kleinberg) hub and authority scores by power iteration. An authority is a node that many good hubs point to (e.g. a course many others build on, a heavily served destination airport); a hub is a node that points to many good authorities. Use for questions like 'which pages are the best hubs?', 'which nodes are the most authoritative?' or 'which airports send flights to the most important destinations?'. Designed for directed graphs; on undirected graphs hub = authority. Weights are ignored unless use_weights is true. Scores sum to 1. Returns the top_k nodes sorted by sort_by, each with id, label, authority and hub.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "sort_by": {
+        "type": "string",
+        "enum": [
+          "authority",
+          "hub"
+        ],
+        "description": "Rank nodes by their authority score or by their hub score.",
+        "default": "authority"
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of power-iteration steps.",
+        "default": 1000,
+        "minimum": 1,
+        "maximum": 100000
+      },
+      "tol": {
+        "type": "number",
+        "description": "Stop when the total change in hub scores falls below this.",
+        "default": 1e-10
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "Use edge weights as link strengths instead of counting every edge as 1.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "courses"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "sort_by": "hub"
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 3
+    }
+  ]
+}

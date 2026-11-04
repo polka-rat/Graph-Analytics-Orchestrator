@@ -1,0 +1,62 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.ab9fb3a3",
+  "author": "ab9fb3a3",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Compares two nodes using common neighbours and Jaccard similarity (intersection size divided by union size). Use for similar friend circles or overlapping airport connections. Supports undirected or directed graphs; direction selects incoming, outgoing, or combined neighbours. Ignores weights and self-loops. Returns labelled input nodes, exact counts, a six-decimal jaccard_score, and up to top_k common neighbours. Two empty neighbour sets score zero.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of a graph registered in the provided store."
+      },
+      "node_a": {
+        "type": "string",
+        "description": "First exact node ID; use lookup_node to resolve names."
+      },
+      "node_b": {
+        "type": "string",
+        "description": "Second exact node ID; may equal node_a."
+      },
+      "direction": {
+        "type": "string",
+        "description": "Neighbour sets: all ignores edge direction, in uses incoming, out uses outgoing. Equivalent on undirected graphs.",
+        "default": "all",
+        "enum": [
+          "all",
+          "in",
+          "out"
+        ]
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries in each returned node list; calculations still use the full graph.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node_a",
+      "node_b"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node_a": "m1",
+      "node_b": "m2"
+    },
+    {
+      "graph_id": "airports",
+      "node_a": "MAA",
+      "node_b": "DEL",
+      "direction": "out",
+      "top_k": 5
+    }
+  ]
+}

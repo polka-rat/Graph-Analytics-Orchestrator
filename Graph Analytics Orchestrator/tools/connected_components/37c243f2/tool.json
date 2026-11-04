@@ -1,0 +1,25 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.37c243f2",
+  "author": "37c243f2",
+  "tier": "easy",
+  "category": "community",
+  "description": "Finds all connected components in an undirected graph. Use it to identify disconnected groups of nodes, compare component sizes, and inspect each component as a registered subgraph. Returns component sizes, node references, and subgraph identifiers.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    }
+  ]
+}

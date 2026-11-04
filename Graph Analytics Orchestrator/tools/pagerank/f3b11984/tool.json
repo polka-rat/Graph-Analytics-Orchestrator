@@ -1,0 +1,54 @@
+{
+  "name": "pagerank",
+  "implementation_id": "pagerank.f3b11984",
+  "author": "f3b11984",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by overall importance using PageRank, computed by power iteration: a node is important when important nodes link to it. Use for questions about the most influential, important, central or well-connected-to nodes (key airports, main characters, top papers). Works on directed and undirected graphs; dangling nodes are handled. By default edge weights are used as link strength when the graph has them; pass weighted=false to ignore them (for example on airports, where weight is a distance in km). Returns the top_k nodes with id, label, rank and score; scores over all nodes sum to 1.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "damping": {
+        "type": "number",
+        "description": "Probability of following a link instead of jumping to a random node; from 0 up to but not including 1.",
+        "default": 0.85,
+        "minimum": 0,
+        "maximum": 0.999
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top-ranked nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Use edge weights as link strength when the graph has weights (default true). Set false to treat every edge equally, e.g. when weights are distances.",
+        "default": true
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "weighted": false
+    },
+    {
+      "graph_id": "courses",
+      "damping": 0.9,
+      "top_k": 3
+    }
+  ]
+}

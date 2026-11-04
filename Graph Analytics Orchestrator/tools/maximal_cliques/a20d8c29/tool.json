@@ -1,0 +1,46 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.a20d8c29",
+  "author": "a20d8c29",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds groups in which every member is directly connected to every other member, using the Bron-Kerbosch algorithm with pivoting, and returns the largest such groups. A clique is maximal when no further node can be added to it. Use it for questions about tightly knit groups where everyone knows everyone, such as 'what is the largest group of airports that all fly to each other?', 'which characters all appear together?' or 'find the tightest-knit circles in this network'. Cliques are an undirected idea, so edge direction is ignored on a directed graph and edge weights are not used. Returns the top_k largest cliques, each listing its member nodes, and registers each one as a subgraph so another tool can analyse it next; result_graph_id is the largest clique.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, for example 'karate'. Use list_graphs to see the available graphs."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest cliques to return, from 1 to 100. Fewer may be returned if the response would exceed the 8 KB limit.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "min_size": {
+        "type": "integer",
+        "description": "Ignore cliques smaller than this many nodes. Use 3 or more to skip plain pairs and isolated nodes.",
+        "default": 1
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5,
+      "min_size": 4
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 3
+    }
+  ]
+}

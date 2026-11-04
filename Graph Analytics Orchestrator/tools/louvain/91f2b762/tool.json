@@ -1,0 +1,61 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.91f2b762",
+  "author": "91f2b762",
+  "tier": "hard",
+  "category": "community",
+  "description": "Detects communities (groups of densely connected nodes) by maximising modularity with the Louvain algorithm. Use for questions like 'what are the communities in this network?', 'which group does X belong to?' or 'how strong is the community structure?'. Works on undirected graphs, weighted or not; directed graphs are also accepted but edge directions are ignored. Returns the modularity score (higher means stronger communities), the number of communities, and the top_k largest communities, each with its size, a sample of member nodes (id and label) and a graph_id of a registered subgraph that other tools can analyse; result_graph_id is the largest community. Optionally pass node to also get that node's community. Deterministic for a given seed.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'lesmis'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Seed for the random node order; the same seed always gives the same communities.",
+        "default": 0
+      },
+      "resolution": {
+        "type": "number",
+        "description": "Modularity resolution: values above 1 give more, smaller communities; below 1 fewer, larger ones. Must be greater than 0.",
+        "default": 1.0
+      },
+      "use_weights": {
+        "type": "boolean",
+        "description": "Use edge weights as connection strength (only if the graph is weighted). Set false to count every edge as 1, e.g. for 'airports', whose weights are distances in km.",
+        "default": true
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: also return which community this node belongs to. Use lookup_node to find it from a name."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5,
+      "seed": 1
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "use_weights": false
+    }
+  ]
+}

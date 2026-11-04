@@ -1,0 +1,45 @@
+{
+  "name": "strongly_connected_components",
+  "implementation_id": "strongly_connected_components.fcd76f91",
+  "author": "fcd76f91",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds the strongly connected components (SCCs) of a directed graph with Tarjan's algorithm: maximal groups of nodes in which every node can reach every other by following edge directions. Use it for questions like 'Which groups of accounts all reach each other?', 'Is the network strongly connected?', 'Can every airport be reached from every other?', 'Which nodes lie on no cycle?' or 'Which mutually reachable group contains X?'. Directed graphs only (for undirected graphs use connected_components). Returns the number of components, the largest size, how many are single nodes, and the top_k largest components with their size and sample members (id and label). Each listed component is registered as a subgraph; result_graph_id is the largest one (or the one containing 'node'), so other tools can run on it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of a directed graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest components to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: also report the component that contains this node. Use lookup_node to find it from a name."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports"
+    },
+    {
+      "graph_id": "courses",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 3
+    }
+  ]
+}

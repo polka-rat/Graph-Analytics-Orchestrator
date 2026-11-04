@@ -1,0 +1,54 @@
+{
+  "name": "clustering_coefficient",
+  "implementation_id": "clustering_coefficient.7065a2b5",
+  "author": "7065a2b5",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes local clustering coefficients: for a node, the fraction of pairs of its neighbours that are themselves connected (0 = none of its contacts know each other, 1 = all do), plus the graph's average clustering. Use it for questions like 'how tightly knit is Alice's circle?' (pass node), 'how clustered is this network?' or 'which nodes have the most interconnected neighbourhoods?'. Works on undirected and directed graphs (directed graphs use the directed formula, counting triangles of every edge orientation). Weights are ignored unless weighted=true, which weighs each triangle by the geometric mean of its edge weights. Without node, returns the top_k nodes by clustering (score), with the average in the summary; with node, returns that node's score, degree, triangle count and the graph average.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes with the highest clustering to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: return only this node's clustering (and the graph average). Use lookup_node to find the id from a name."
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "true: weigh each triangle by its edge weights (geometric mean, scaled by the largest weight). false: ignore weights.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "weighted": true
+    }
+  ]
+}

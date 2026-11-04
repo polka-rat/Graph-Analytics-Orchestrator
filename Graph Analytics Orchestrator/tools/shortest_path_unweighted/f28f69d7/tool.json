@@ -1,0 +1,42 @@
+{
+  "name": "shortest_path_unweighted",
+  "implementation_id": "shortest_path_unweighted.f28f69d7",
+  "author": "f28f69d7",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Finds a fewest-hop path between two nodes using breadth-first search. Use it for questions about the smallest number of flights, friendships, or other links needed to get from one node to another. Works on directed and undirected graphs, including weighted graphs where weights are ignored. Returns the ordered path with node IDs and labels and the number of hops.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to search."
+      },
+      "source": {
+        "type": "string",
+        "description": "Exact starting node ID; use lookup_node if you only know its name."
+      },
+      "target": {
+        "type": "string",
+        "description": "Exact destination node ID; use lookup_node if you only know its name."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "DEL"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

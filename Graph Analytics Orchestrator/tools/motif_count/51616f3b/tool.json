@@ -1,0 +1,34 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.51616f3b",
+  "author": "51616f3b",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts 3-node subgraph motifs. For undirected graphs, it counts closed triangles (3-cliques), open wedges (2-hop paths lacking closure), and transitivity. For directed graphs, it computes the full 16-type Batagelj-Mrvar triad census, induced and non-induced feed-forward loops (030T and generalized FFLs), 3-cycles (030C and cycle instances), and mutual dyads. Distinguishes strictly induced motifs from non-induced motif instances. Edge weights and self-loops are ignored. Result graph ID is always null.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis"
+    },
+    {
+      "graph_id": "courses"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

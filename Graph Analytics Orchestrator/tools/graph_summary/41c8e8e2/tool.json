@@ -1,0 +1,28 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.41c8e8e2",
+  "author": "41c8e8e2",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Gives a high-level overview of a whole graph: number of nodes and edges, density, average degree, min/max degree and the highest-degree node, isolated nodes, number of connected components and the size of the largest one. Also reports reciprocity for directed graphs and total/average weight for weighted ones. Use it for questions like 'how big is this network?', 'how dense is it?' or 'is it connected?'. Works on directed and undirected, weighted and unweighted graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to summarise, e.g. 'karate' or 'airports'. Use list_graphs to see the options."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

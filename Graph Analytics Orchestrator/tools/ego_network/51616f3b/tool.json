@@ -1,0 +1,53 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.51616f3b",
+  "author": "51616f3b",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Extracts the ego network (1-hop neighborhood) around a central node as an induced subgraph. Works on directed and undirected graphs. Allows filtering neighbors by direction ('out', 'in', 'both'). Edges between neighbors are preserved in the registered subgraph. Returns graph metrics (nodes, edges, density, reciprocal pairs), top neighbors ranked by local degree inside the ego network, direction note, and registers the subgraph in result_graph_id for downstream tools. Use for questions about a node's immediate community or local connectivity.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Exact node ID of the central node; use lookup_node first if searching by name."
+      },
+      "direction": {
+        "type": "string",
+        "description": "Which neighbors to include: 'out' (outgoing neighbors, default), 'in' (incoming neighbors), or 'both' (union of both). For undirected graphs, all three select the same neighbors.",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ],
+        "default": "out"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of top neighbors to include in the preview list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "direction": "in"
+    }
+  ]
+}

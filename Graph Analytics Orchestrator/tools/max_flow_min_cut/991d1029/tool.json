@@ -1,0 +1,61 @@
+{
+  "name": "max_flow_min_cut",
+  "implementation_id": "max_flow_min_cut.991d1029",
+  "author": "991d1029",
+  "tier": "hard",
+  "category": "paths",
+  "description": "Computes the maximum flow between a source and a sink node with the Edmonds-Karp algorithm, and the matching minimum cut (the bottleneck edges whose removal separates source from sink). Use for questions like 'how much can flow from A to B?', 'where is the bottleneck between A and B?', 'which edges must be removed to disconnect A from B?' or, with capacity='unit', 'how many edge-disjoint paths connect A and B?'. Works on directed graphs (arcs follow edge direction) and undirected graphs (each edge carries capacity both ways). By default each edge's capacity is its weight (unweighted graphs: 1); capacity can also be 'unit' or a numeric edge attribute such as 'airlines'. Returns the max flow value, the size of the source and sink sides of the cut, and up to top_k cut edges (largest capacity first, ties by node id) as from/to nodes with capacity. If the sink is unreachable the flow is 0. Source and sink must differ; use lookup_node to find node ids.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the flow starts. Use lookup_node to find ids."
+      },
+      "sink": {
+        "type": "string",
+        "description": "Node id where the flow ends; must differ from source."
+      },
+      "capacity": {
+        "type": "string",
+        "description": "Edge capacity: 'weight' (default, edge weight), 'unit' (every edge 1), or the name of a numeric edge attribute such as 'airlines'.",
+        "default": "weight"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of cut edges to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "sink"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "sink": "m34"
+    },
+    {
+      "graph_id": "lesmis",
+      "source": "c11",
+      "sink": "c26",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "sink": "LHR",
+      "capacity": "unit"
+    }
+  ]
+}

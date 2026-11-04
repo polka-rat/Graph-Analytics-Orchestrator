@@ -1,0 +1,71 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.e7c02e9e",
+  "author": "e7c02e9e",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds every node within k steps (hops) of a start node using breadth-first search, and registers them with the start node as a subgraph (result_graph_id) that other tools can analyse. Use for questions like 'who is within two hops of Alice?', 'which airports can I reach in at most 2 flights from Chennai?' or 'show everything near node X'. Works on directed and undirected graphs; weights are ignored. On directed graphs, direction says which edges to follow: out (default), in, or both. Returns the number of nodes at each hop distance and the nearest top_k nodes with their hop distance.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA' or 'm1'. Not a name: use lookup_node to find the id from a name."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Maximum number of hops (steps) from the start node. 1 means direct neighbours only; 0 means the start node alone.",
+        "default": 2,
+        "minimum": 0
+      },
+      "direction": {
+        "type": "string",
+        "description": "Directed graphs only (ignored on undirected graphs): 'out' follows edges leaving a node (who can I reach), 'in' follows edges arriving (who can reach me), 'both' ignores edge direction.",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ],
+        "default": "out"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the nearest nodes to list (the subgraph always contains all of them).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 1,
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "node": "CS101",
+      "k": 3,
+      "direction": "out"
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "k": 0
+    }
+  ]
+}

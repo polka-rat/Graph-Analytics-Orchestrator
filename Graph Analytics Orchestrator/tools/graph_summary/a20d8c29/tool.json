@@ -1,0 +1,31 @@
+{
+  "name": "graph_summary",
+  "implementation_id": "graph_summary.a20d8c29",
+  "author": "a20d8c29",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Describes the overall size and shape of a graph: node and edge counts, density, average degree, minimum and maximum degree, number of isolated nodes, self-loops, and the single most connected node. Adds average and maximum in-degree and out-degree for directed graphs, and total, average, minimum and maximum edge weight for weighted graphs. Use it for orientation questions such as 'how big is this network?', 'how dense or sparse is it?', 'is this graph directed or weighted?' or 'how many connections does a typical node have?', and as a first call before choosing a more specific tool. Works on any graph, directed or undirected, weighted or unweighted. Returns one statistics object, not a ranked list.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to summarise, for example 'karate' or 'airports'. Use list_graphs to see the available graphs."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    },
+    {
+      "graph_id": "courses"
+    }
+  ]
+}

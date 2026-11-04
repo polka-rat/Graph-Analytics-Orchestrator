@@ -1,0 +1,50 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.c4576e71",
+  "author": "c4576e71",
+  "tier": "hard",
+  "category": "community",
+  "description": "Detects communities by maximising modularity with the Louvain method. Use it for questions like 'what are the communities or natural groups in this network?' and 'how strong is the community structure?'. Works on undirected and directed graphs (directed modularity) and uses edge weights when the graph is weighted. Returns the largest top_k communities, each with its size, a few of its best-connected member nodes, and the id of a subgraph holding the whole community (usable by other tools), plus the overall modularity score. result_graph_id is the largest community. Deterministic for a given seed; resolution above 1 gives smaller communities.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "resolution": {
+        "type": "number",
+        "description": "Modularity resolution: 1.0 is standard, larger values give more and smaller communities, smaller values give fewer and larger ones.",
+        "default": 1.0
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for the node visiting order; the same seed always gives the same communities.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "seed": 1
+    }
+  ]
+}

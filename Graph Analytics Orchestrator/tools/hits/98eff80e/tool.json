@@ -1,0 +1,71 @@
+{
+  "name": "hits",
+  "implementation_id": "hits.98eff80e",
+  "author": "98eff80e",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Computes Kleinberg's HITS hub and authority centrality scores via power iteration on graph adjacency. Identifies key hubs (nodes linking to prominent destinations) and authorities (nodes endorsed by major hubs). Supports directed, undirected, weighted, and unweighted graphs. Returns top-k nodes ranked by hub or authority score with both metrics.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Number of top-ranked nodes to return (1 to 100).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "score_type": {
+        "type": "string",
+        "description": "Centrality metric used for primary ranking: 'hub' (nodes pointing to top authorities) or 'authority' (nodes pointed to by top hubs).",
+        "enum": [
+          "hub",
+          "authority"
+        ],
+        "default": "hub"
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of power iterations before stopping.",
+        "default": 100
+      },
+      "tol": {
+        "type": "number",
+        "description": "Convergence error tolerance for power iteration.",
+        "default": 1e-08
+      },
+      "normalized": {
+        "type": "boolean",
+        "description": "Whether to normalize scores so each metric sums to 1.0.",
+        "default": true
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Whether to use edge weights in the adjacency matrix (default true, matching nx.hits).",
+        "default": true
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "score_type": "authority",
+      "top_k": 5
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 10
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.64036f4f",
+  "author": "64036f4f",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities in an undirected graph by repeatedly removing the edge with highest unweighted betweenness until the requested count is reached. Use it to ask how a network separates into groups. Returns deterministic communities, their nodes and subgraph ids, sizes, and partition modularity.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the undirected graph to partition."
+      },
+      "num_communities": {
+        "type": "integer",
+        "description": "Target number of communities, from 2 to 20.",
+        "default": 2,
+        "minimum": 2,
+        "maximum": 20
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "num_communities": 2
+    },
+    {
+      "graph_id": "lesmis",
+      "num_communities": 3
+    }
+  ]
+}

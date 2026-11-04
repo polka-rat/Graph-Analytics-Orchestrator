@@ -1,0 +1,93 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.4ebce3f0",
+  "author": "4ebce3f0",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds the nodes whose position in the network is most similar to a given node, using DeepWalk-style embeddings: random walks over the graph train a vector for every node (skip-gram with negative sampling), and nodes are compared by cosine similarity of their vectors. Use it for questions like 'which nodes play a similar role to X?', 'which airports are most like Chennai in the route network?' or 'how similar are X and Y?' (give Y as target). Nodes that are near each other or share many neighbours score high, even without a direct edge. Works on undirected and directed graphs (direction ignored); weights are ignored. Results are approximate and depend on seed (default 0, so repeat calls agree). Returns the top_k most similar nodes with scores from -1 to 1 and whether each is a direct neighbour, plus the target's score and rank if given.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Exact id of the node to find similar nodes for (use lookup_node to find it)."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many similar nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "target": {
+        "type": "string",
+        "description": "Optional exact id of a second node; the result then gives its similarity to 'node' and its rank."
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for the walks and training; the same seed gives the same result.",
+        "default": 0
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Length of each node's embedding vector.",
+        "default": 32,
+        "minimum": 2,
+        "maximum": 128
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Number of nodes in each random walk.",
+        "default": 20,
+        "minimum": 2,
+        "maximum": 80
+      },
+      "walks_per_node": {
+        "type": "integer",
+        "description": "Random walks started from each node.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 40
+      },
+      "window": {
+        "type": "integer",
+        "description": "How many steps apart on a walk two nodes can be and still count as context for each other.",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "epochs": {
+        "type": "integer",
+        "description": "Training passes over the walk data.",
+        "default": 2,
+        "minimum": 1,
+        "maximum": 10
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "top_k": 5,
+      "target": "c01"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    }
+  ]
+}

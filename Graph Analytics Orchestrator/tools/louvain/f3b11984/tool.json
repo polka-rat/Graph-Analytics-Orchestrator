@@ -1,0 +1,66 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.f3b11984",
+  "author": "f3b11984",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities (densely connected groups of nodes) with the Louvain modularity-optimisation algorithm and reports the modularity score, which says how strong the community structure is (above about 0.3 is clear). Use for questions such as 'what are the communities?', 'what natural groups exist?', 'which group is X in?' or 'how strongly does the network split into clusters?'. Works on undirected graphs; directed graphs are treated as undirected (weights of both directions added). Uses edge weights as connection strength when present (weighted=false ignores them). Randomised but deterministic: same seed gives the same result. Returns the top_k largest communities with size, highest-degree members and a graph_id for each community subgraph, which other tools can analyse; result_graph_id is the largest community. Pass node to get only that node's community.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "resolution": {
+        "type": "number",
+        "description": "Modularity resolution; 1 is standard, larger values give more and smaller communities, smaller values give fewer and larger ones.",
+        "default": 1.0,
+        "minimum": 0.01
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Seed for the random node order, so results are repeatable.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Use edge weights as connection strength when the graph has weights (default true). Set false to treat every edge equally, e.g. when weights are distances.",
+        "default": true
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id (use lookup_node to find it). If given, only the community containing this node is returned and top_k is ignored."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 3,
+      "seed": 1
+    },
+    {
+      "graph_id": "airports",
+      "weighted": false,
+      "top_k": 5
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.b2d75536",
+  "author": "b2d75536",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Builds the ego network of one node: that node, the nodes within 'radius' steps of it, and every edge among them. Use it for questions about one node's immediate circle or local neighbourhood, such as 'show me Alice's immediate network', 'who is around Chennai airport and how connected are they to each other?' or 'how tightly knit is this node's circle?'. Works on directed and undirected, weighted and unweighted graphs; on a directed graph, direction chooses whether to follow outgoing edges, incoming edges or both. Returns the centre node, the number of nodes, edges and density of the ego network, and the best connected members (each with id, label, how many members it links to, and how many steps it is from the centre). The whole ego network is registered as a new graph, returned in result_graph_id, so another tool can analyse it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the centre node (the ego), e.g. 'MAA' in airports. Use lookup_node to turn a name into an id."
+      },
+      "radius": {
+        "type": "integer",
+        "description": "How many steps out from the centre to include. 1 (the default) means the centre and its immediate neighbours.",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 5
+      },
+      "direction": {
+        "type": "string",
+        "description": "On a directed graph: 'both' ignores direction (the default), 'out' follows only outgoing edges, 'in' only incoming ones. Ignored on undirected graphs.",
+        "enum": [
+          "both",
+          "out",
+          "in"
+        ],
+        "default": "both"
+      },
+      "include_center": {
+        "type": "boolean",
+        "description": "Whether the centre node itself is part of the returned network. Set it to false to see how the neighbours connect without the centre.",
+        "default": true
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many members of the ego network to list, best connected first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "radius": 1,
+      "direction": "both",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "include_center": false,
+      "top_k": 3
+    }
+  ]
+}

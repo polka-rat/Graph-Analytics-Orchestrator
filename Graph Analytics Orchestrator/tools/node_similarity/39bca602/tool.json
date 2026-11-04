@@ -1,0 +1,62 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.39bca602",
+  "author": "39bca602",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Calculates structural similarity between graph nodes using shared neighborhood overlap and Jaccard similarity. In pairwise mode (when target_node is specified), computes mutual neighbors and exact Jaccard score between two nodes. In ranking mode, returns the top_k most similar nodes sharing neighbors with the query node. Supports both directed and undirected graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Unique identifier of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Reference node ID. Use lookup_node to find node IDs."
+      },
+      "target_node": {
+        "type": "string",
+        "description": "Optional second node ID for pairwise comparison. If omitted, the tool ranks the top_k most similar nodes across the graph."
+      },
+      "direction": {
+        "type": "string",
+        "description": "For directed graphs, specifies edge direction to follow: 'undirected' (any connection), 'out' (outgoing), or 'in' (incoming). Defaults to 'undirected'.",
+        "enum": [
+          "undirected",
+          "out",
+          "in"
+        ],
+        "default": "undirected"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of top similar nodes to return in ranking mode.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "target_node": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "greedy_coloring",
+  "implementation_id": "greedy_coloring.8809b513",
+  "author": "8809b513",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Assigns colors to graph nodes with a deterministic greedy algorithm that visits highest-degree nodes first. Use it to find a valid node coloring or estimate how many colors this heuristic needs. Works on directed, undirected, weighted, and unweighted graphs: weights are ignored, and directed edges are treated as undirected conflicts. Returns the total color count, color-class sizes, and up to top_k node assignments with IDs and labels.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to color."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of node color assignments to include, ordered by node ID.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

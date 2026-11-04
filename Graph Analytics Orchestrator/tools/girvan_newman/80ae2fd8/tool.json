@@ -1,0 +1,44 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.80ae2fd8",
+  "author": "80ae2fd8",
+  "tier": "hard",
+  "category": "community",
+  "description": "Detects communities in an undirected graph using the Girvan-Newman algorithm. Repeatedly removes an edge with maximum edge betweenness centrality to split the graph into communities. Supports top_k to limit returned communities and displayed node references, and num_communities to set the target number of communities. Weighted graphs are treated as unweighted.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the undirected graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of communities to return and maximum number of node references to display per community.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "num_communities": {
+        "type": "integer",
+        "description": "Target number of communities to detect.",
+        "default": 2,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "top_k": 5,
+      "num_communities": 2
+    },
+    {
+      "graph_id": "karate"
+    }
+  ]
+}

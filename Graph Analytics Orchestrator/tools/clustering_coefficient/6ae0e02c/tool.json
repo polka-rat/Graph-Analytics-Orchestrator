@@ -1,0 +1,44 @@
+{
+  "name": "clustering_coefficient",
+  "implementation_id": "clustering_coefficient.6ae0e02c",
+  "author": "6ae0e02c",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Measures how tightly a node's neighbours are connected to each other (0 = none of its neighbours know each other, 1 = they all do), plus the graph's average. Use for questions like 'are my friends also friends with each other?', 'which nodes sit in the most tightly knit groups?', or 'how clustered is this network?'. With `node` it returns that node's coefficient; without it, the top_k most clustered nodes and the graph average. Works on undirected graphs (standard definition) and directed graphs (Fagiolo's directed definition, as NetworkX). Edge weights are ignored; nodes with fewer than two neighbours score 0. Returns average_clustering and a list of nodes with clustering and degree.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node ID (e.g. 'm1' or 'MAA'), not a display name. If given, only this node's coefficient is returned. Find IDs with lookup_node."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the most clustered nodes to return when no node is given.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.ae9bcafc",
+  "author": "ae9bcafc",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts common three-node structural motifs without sampling. Use it to compare how often triangles, open triads, feed-forward loops, or directed three-cycles occur. It supports directed and undirected graphs, ignores weights and self-loops, and returns exact integer counts; directed results also include reciprocal edge pairs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph whose small motifs should be counted."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "courses"
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

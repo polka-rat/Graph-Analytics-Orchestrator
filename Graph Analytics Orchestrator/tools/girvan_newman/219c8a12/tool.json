@@ -1,0 +1,70 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.219c8a12",
+  "author": "219c8a12",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities with the Girvan-Newman method: repeatedly removes the edge with the highest betweenness (the bridges between groups) until the network falls apart into groups. Use for questions like 'how does the network break apart into groups?', 'what are the natural communities?' or 'split the club into 2 factions'. Give num_communities to choose how many groups; otherwise returns the split with the highest modularity. Treats graphs as undirected; edge removal ignores weights, modularity uses them unless weighted=false. Returns the communities (largest first) with sizes and sample members, the modularity, the modularity of each split, and registers each listed community as a subgraph (its graph_id; result_graph_id = community_index, default the largest) for further analysis with other tools. Slow on large graphs: fine on graphs of a few hundred edges; on larger ones it stops at a fixed work limit (well within the time limit, same result on every run) and returns the best split found so far.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "num_communities": {
+        "type": "integer",
+        "description": "Stop once the graph has split into this many communities (1 to the number of nodes). Omit it to get the split with the highest modularity.",
+        "minimum": 1
+      },
+      "max_removals": {
+        "type": "integer",
+        "description": "Safety cap on the number of edges removed.",
+        "default": 1000,
+        "minimum": 1,
+        "maximum": 100000
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many communities to list (largest first).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "community_index": {
+        "type": "integer",
+        "description": "Which community to return as result_graph_id (0 = largest, 1 = second largest, ...).",
+        "default": 0,
+        "minimum": 0
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Whether modularity uses edge weights (edge removal never does).",
+        "default": true
+      },
+      "max_seconds": {
+        "type": "number",
+        "description": "Backstop time limit in seconds (at most 25) for very slow machines; normally a fixed work limit stops large runs first. The best split found so far is returned.",
+        "default": 20,
+        "maximum": 25
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "num_communities": 2
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5,
+      "community_index": 1
+    }
+  ]
+}

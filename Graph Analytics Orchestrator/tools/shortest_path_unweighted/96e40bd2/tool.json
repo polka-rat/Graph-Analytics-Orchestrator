@@ -1,0 +1,42 @@
+{
+  "name": "shortest_path_unweighted",
+  "implementation_id": "shortest_path_unweighted.96e40bd2",
+  "author": "96e40bd2",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Finds the path with the fewest hops (edges) between two nodes using breadth-first search; edge weights and distances are ignored. Use for questions like 'what is the fewest number of flights from Chennai to Lisbon', 'how many steps separate two people', or 'how is A connected to B'. Needs node IDs, so call lookup_node first if you only have names. Works on directed graphs (follows edge direction) and undirected graphs. Returns the ordered list of nodes on the path (each with id, label and step number) and states the hop count in the summary. Returns an error if either node does not exist or if no path exists. For the cheapest path by distance or weight use shortest_path_weighted instead.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to search, e.g. 'airports' or 'karate'. Use list_graphs to see the options."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node ID where the path starts, e.g. 'MAA'. Use lookup_node to find an ID from a name."
+      },
+      "target": {
+        "type": "string",
+        "description": "Node ID where the path ends, e.g. 'LIS'. Use lookup_node to find an ID from a name."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    }
+  ]
+}

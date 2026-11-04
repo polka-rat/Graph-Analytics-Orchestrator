@@ -1,0 +1,38 @@
+{
+  "name": "shortest_path_weighted",
+  "author": "f897d4c5",
+  "implementation_id": "shortest_path_weighted.f897d4c5",
+  "version": "1.0.0",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Finds the shortest weighted path between a source and target node in a graph.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "The unique identifier of the graph to query."
+      },
+      "source": {
+        "type": "string",
+        "description": "The starting node identifier."
+      },
+      "target": {
+        "type": "string",
+        "description": "The target node identifier."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "DEL"
+    }
+  ]
+}

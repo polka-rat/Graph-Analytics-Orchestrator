@@ -1,0 +1,36 @@
+{
+  "name": "clustering_coefficient",
+  "implementation_id": "clustering_coefficient.3ddaa37e",
+  "author": "3ddaa37e",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes ordinary unweighted local clustering and the mean over all nodes of an undirected graph. Use to ask how tightly connected a node's neighbors are. Ignores weights and self-loops; nodes with fewer than two neighbors have coefficient zero. Returns one specified node or top_k nodes with coefficients, plus the graph average. Rejects directed or empty graphs.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum entries in each output preview. Full scalar totals are unaffected.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional exact node ID for a local coefficient; omit to rank nodes."
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    }
+  ]
+}

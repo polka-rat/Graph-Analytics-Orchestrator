@@ -1,0 +1,36 @@
+{
+  "name": "strongly_connected_components",
+  "implementation_id": "strongly_connected_components.80ae2fd8",
+  "author": "80ae2fd8",
+  "tier": "medium",
+  "category": "community",
+  "description": "Finds strongly connected components in a directed graph using Kosaraju's algorithm. Supports top_k to limit returned components and node references.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the directed graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of components to return and maximum number of node references to show per returned component.",
+        "minimum": 1,
+        "default": 10,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses"
+    }
+  ]
+}

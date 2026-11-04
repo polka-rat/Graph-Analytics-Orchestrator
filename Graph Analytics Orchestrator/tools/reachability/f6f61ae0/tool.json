@@ -1,0 +1,43 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.f6f61ae0",
+  "author": "f6f61ae0",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Checks whether any path exists from source to target using breadth-first search. Use for questions such as whether one airport can reach another. Supports directed and undirected, weighted and unweighted graphs; follows outgoing edges and ignores weights. Returns source and target node references and a reachable boolean; a node reaches itself.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Starting node ID; resolve names with lookup_node."
+      },
+      "target": {
+        "type": "string",
+        "description": "Destination node ID; resolve names with lookup_node."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ],
+    "additionalProperties": false
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

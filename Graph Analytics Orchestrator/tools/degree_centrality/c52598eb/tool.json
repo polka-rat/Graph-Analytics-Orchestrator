@@ -1,0 +1,51 @@
+{
+  "name": "degree_centrality",
+  "implementation_id": "degree_centrality.c52598eb",
+  "author": "c52598eb",
+  "tier": "easy",
+  "category": "centrality",
+  "description": "Ranks nodes by degree centrality: the number of direct connections a node has, divided by (n - 1). Use it for questions like 'Which airport has the most direct routes?', 'Which airports have the most departures (direction=out) or arrivals (direction=in)?' or 'Who has the most friends in the karate club?'. Works on directed and undirected graphs; edge weights are ignored. On a directed graph the score counts incoming plus outgoing edges by default, or only one direction. Returns the top_k nodes, highest first, each with id, label, score and its raw degree (plus in_degree and out_degree on directed graphs).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the most connected nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ],
+        "description": "Directed graphs only: count incoming plus outgoing edges ('total'), only incoming ('in'), or only outgoing ('out'). Ignored on undirected graphs.",
+        "default": "total"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "direction": "out"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "name": "node_similarity",
+  "implementation_id": "node_similarity.eaf1d77a",
+  "author": "eaf1d77a",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Measures how similar two nodes' connections are: the number of common neighbours they share and their Jaccard similarity (shared neighbours divided by all distinct neighbours, from 0 = nothing in common to 1 = identical neighbourhoods). Use for questions like 'How similar are Alice's and Bob's connections?', 'Do these two airports serve the same destinations?' or, with only node_a, 'Which nodes are most similar to Alice?'. Give node_a and node_b to compare one pair; give only node_a to get the top_k most similar nodes ranked by Jaccard score. Works on directed and undirected graphs (direction picks out-, in- or all neighbours on directed graphs). Returns node ids with labels, the common-neighbour count, the Jaccard score and the shared neighbours. Node ids must be exact: use lookup_node first to turn a name into an id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse"
+      },
+      "node_a": {
+        "type": "string",
+        "description": "ID of the first node (use lookup_node to find it from a name)"
+      },
+      "node_b": {
+        "type": "string",
+        "description": "ID of the second node. Leave out to rank the nodes most similar to node_a"
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "any",
+          "out",
+          "in"
+        ],
+        "default": "any",
+        "description": "On directed graphs, compare outgoing neighbours ('out'), incoming neighbours ('in') or all neighbours ('any'). Ignored on undirected graphs"
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "Ranking mode: how many similar nodes to return. Pair mode: how many shared neighbours to list"
+      }
+    },
+    "required": [
+      "graph_id",
+      "node_a"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node_a": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node_a": "MAA",
+      "node_b": "DEL"
+    },
+    {
+      "graph_id": "airports",
+      "node_a": "MAA",
+      "direction": "out",
+      "top_k": 5
+    }
+  ]
+}

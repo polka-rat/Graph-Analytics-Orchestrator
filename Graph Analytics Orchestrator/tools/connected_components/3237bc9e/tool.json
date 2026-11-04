@@ -1,0 +1,39 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.3237bc9e",
+  "author": "3237bc9e",
+  "tier": "easy",
+  "category": "community",
+  "description": "Splits a graph into connected components: groups of nodes that can all reach each other, with no edges between groups. Use it for questions like 'is this network connected?', 'how many separate parts are there?' or 'what is the largest connected part?'. Works on undirected and directed graphs; on a directed graph edge direction is ignored (weakly connected components). Returns the number of components and the top_k largest (largest first), each with its size, some member nodes and a graph_id for running other tools on it. result_graph_id is the largest component.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest components to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports"
+    }
+  ]
+}

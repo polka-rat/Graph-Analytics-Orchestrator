@@ -1,0 +1,49 @@
+{
+  "name": "girvan_newman",
+  "implementation_id": "girvan_newman.3c8c3c69",
+  "author": "3c8c3c69",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities with the Girvan-Newman method: it repeatedly removes the edge with the highest betweenness (the bridge most shortest paths cross) until the graph falls apart into groups. Use it for questions like 'how does the network break apart into groups?', 'what are the communities?' or 'split the club into two factions' (num_communities=2). By default returns the split with the highest modularity; with num_communities, the first split into at least that many groups. Treats every graph as undirected and unweighted. Slow: fine for graphs up to a few hundred edges (karate, lesmis, courses, projects, small subgraphs); on large graphs such as airports it returns an error, so use louvain or label_propagation there. Returns the number of communities, modularity, the top_k largest communities with their best-connected members and a graph_id each, and the first splits of the hierarchy. result_graph_id is the largest community.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to split into communities."
+      },
+      "num_communities": {
+        "type": "integer",
+        "description": "Stop at the first split with at least this many communities, e.g. 2 for 'which two factions'. Leave it out to get the split with the highest modularity.",
+        "minimum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest communities to list (each community's subgraph always holds all its members).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "num_communities": 2
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "num_communities": 3
+    }
+  ]
+}

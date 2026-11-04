@@ -1,0 +1,36 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.a018559c",
+  "author": "a018559c",
+  "tier": "hard",
+  "category": "community",
+  "description": "Uses pivoted Bron-Kerbosch search to find the largest maximal cliques in a graph, treating directed edges as undirected adjacency. Returns up to top_k cliques ranked by size with deterministic node-ID tie-breaking, registers each returned clique as a subgraph, and sets result_graph_id to the largest clique.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest maximal cliques to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

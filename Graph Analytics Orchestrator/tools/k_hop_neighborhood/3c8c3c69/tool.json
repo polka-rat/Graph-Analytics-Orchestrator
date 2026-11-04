@@ -1,0 +1,67 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.3c8c3c69",
+  "author": "3c8c3c69",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds every node within k hops (steps along edges) of one node, using breadth-first search. Use it for questions like 'who is within two hops of Alice?', 'which airports can I reach with at most one stop from Chennai?' (k=2) or 'which courses lead to this course within 3 steps?' (direction='in'). Works on directed and undirected graphs; weights are ignored, every edge is one hop. In directed graphs hops follow edge direction unless direction says otherwise. Returns the total count, the count at each hop distance, the nearest top_k nodes with their hop distance, and result_graph_id: the subgraph of these nodes plus the start node, so other tools can analyse the neighbourhood. Needs a node id: call lookup_node first to turn a name into an id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA' in airports or 'm1' in karate. Use lookup_node to find it from a name."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Maximum number of hops from the start node, e.g. 2 for 'within two hops' or for 'at most one stop' on flights.",
+        "default": 2,
+        "minimum": 1
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ],
+        "description": "Directed graphs only: 'out' follows edges forwards (where can I get to from the node), 'in' follows them backwards (who can reach the node), 'both' ignores direction. Ignored for undirected graphs.",
+        "default": "out"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the nearest nodes to list in the result (the subgraph always holds all of them).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "k": 2
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 1,
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "node": "CS301",
+      "k": 3,
+      "direction": "in"
+    }
+  ]
+}

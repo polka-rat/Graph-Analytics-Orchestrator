@@ -1,0 +1,82 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.7780ae37",
+  "author": "7780ae37",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds the nodes that play the most similar structural role to a given node, using DeepWalk-style embeddings: random walks over the graph are turned into vectors, and nodes are ranked by cosine similarity to the query node. Use it for questions like 'which nodes are most similar to X?', 'who is in a similar position to X in the network?' or 'which airports behave like X?'. Works on directed and undirected graphs (direction and weights are ignored). Deterministic for a fixed seed (default 0). Returns the top_k nodes, each with id, label and a similarity score between -1 and 1; the query node itself is excluded.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'airports'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the query node to find similar nodes for (use lookup_node to find ids from names)."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many similar nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for the walks; the same seed always gives the same result.",
+        "default": 0
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Embedding size.",
+        "default": 32,
+        "minimum": 1,
+        "maximum": 128
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Number of nodes in each random walk.",
+        "default": 40,
+        "minimum": 2,
+        "maximum": 100
+      },
+      "num_walks": {
+        "type": "integer",
+        "description": "Random walks started from each node.",
+        "default": 40,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "window": {
+        "type": "integer",
+        "description": "Context window size: how far apart two nodes in a walk can be to count as co-occurring.",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 10
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c74",
+      "top_k": 5,
+      "seed": 1
+    }
+  ]
+}

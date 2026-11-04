@@ -1,0 +1,40 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.f9857550",
+  "author": "f9857550",
+  "tier": "easy",
+  "category": "community",
+  "description": "Splits a graph into its connected components (groups of nodes linked by some path) using breadth-first search, and reports how many there are and their sizes. Use for questions like 'is the network connected?', 'how many separate pieces does it have?', 'what is the largest connected part?' or 'which nodes are cut off from the rest?'. Works on undirected graphs; on directed graphs it ignores edge direction (weakly connected components). Weights are ignored. Returns the top_k components, largest first, each with rank, size, fraction_of_nodes, up to 10 member nodes and its own graph_id; result_graph_id is the largest component, so other tools can run on it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many components to return, largest first.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 3
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

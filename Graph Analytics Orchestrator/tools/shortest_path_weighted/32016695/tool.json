@@ -1,0 +1,52 @@
+{
+  "name": "shortest_path_weighted",
+  "implementation_id": "shortest_path_weighted.32016695",
+  "author": "32016695",
+  "tier": "medium",
+  "category": "paths",
+  "description": "Finds the shortest path by total edge weight between two nodes, using Dijkstra's algorithm. Use for questions like 'what is the shortest route by distance from Chennai to Lisbon?', 'how many km is the shortest trip from A to B?' or 'what is the cheapest way to get from X to Y?'. Edge weights are treated as costs to add up (airports: great-circle km; lesmis: number of shared chapters). Works on directed graphs (follows edge directions unless ignore_direction is true) and undirected graphs; on unweighted graphs every edge counts 1. Returns the total distance, the number of edges, and the path as a list of nodes with each step's weight and the running total. If no path exists it returns reachable=false. For the fewest hops instead of the least distance, use shortest_path_unweighted. Needs node ids: use lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "source": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA'. Use lookup_node to find it from a name."
+      },
+      "target": {
+        "type": "string",
+        "description": "Id of the end node, e.g. 'LIS'. Use lookup_node to find it from a name."
+      },
+      "ignore_direction": {
+        "type": "boolean",
+        "description": "Directed graphs only: true treats every edge as two-way. Ignored on undirected graphs.",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "lesmis",
+      "source": "c12",
+      "target": "c74"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

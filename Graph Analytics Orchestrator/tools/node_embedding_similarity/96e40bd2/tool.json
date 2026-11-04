@@ -1,0 +1,77 @@
+{
+  "name": "node_embedding_similarity",
+  "implementation_id": "node_embedding_similarity.96e40bd2",
+  "author": "96e40bd2",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Learns DeepWalk-style node embeddings (random walks turned into vectors) and returns the nodes most similar to a given node by cosine similarity. Use for questions like 'which nodes play a similar role to X', 'which airports are structurally like Chennai', or 'who is positioned like member 1 in the network'. Similar here means a similar position and neighbourhood in the graph, not necessarily directly connected, and not similar attributes. Needs a node ID (use lookup_node first if you only have a name). Works on directed graphs (walks follow edge direction) and undirected graphs, weighted or not (weights are ignored). Deterministic for a given seed. Returns the top_k nearest nodes, each with id, label and a cosine score between -1 and 1 (higher is more similar), excluding the query node itself.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to embed, e.g. 'karate' or 'airports'. Use list_graphs to see the options."
+      },
+      "node": {
+        "type": "string",
+        "description": "Node ID of the query node whose most similar nodes you want, e.g. 'MAA' or 'm1'. Use lookup_node to find an ID from a name."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many most-similar nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "walk_length": {
+        "type": "integer",
+        "description": "Number of nodes in each random walk (2 to 100).",
+        "default": 20,
+        "minimum": 2,
+        "maximum": 100
+      },
+      "num_walks": {
+        "type": "integer",
+        "description": "Number of random walks started from every node (1 to 100).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "window": {
+        "type": "integer",
+        "description": "How many steps apart two nodes on a walk can be and still count as context for each other (1 to 10).",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "dimensions": {
+        "type": "integer",
+        "description": "Size of each node's embedding vector (2 to 128).",
+        "default": 32,
+        "minimum": 2,
+        "maximum": 128
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for the walks. The same seed always gives the same answer.",
+        "default": 0,
+        "minimum": 0
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "top_k": 5
+    }
+  ]
+}

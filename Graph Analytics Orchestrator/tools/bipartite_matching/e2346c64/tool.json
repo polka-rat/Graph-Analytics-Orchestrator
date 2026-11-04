@@ -1,0 +1,36 @@
+{
+  "name": "bipartite_matching",
+  "implementation_id": "bipartite_matching.e2346c64",
+  "author": "e2346c64",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Finds a maximum matching in a bipartite graph with the Hopcroft-Karp algorithm: the largest set of edges with no shared node, i.e. the most one-to-one pairs. Use for assignment questions: What is the best assignment of students to projects? How many students can get a project of their choice? Who is left unassigned? Works on undirected, bipartite graphs (e.g. 'projects'); sides come from the 'side' node attribute, or are found by 2-colouring. Weights are ignored. Returns an error for directed or non-bipartite graphs. Returns matching_size, max_possible, whether it is perfect, the matched pairs (up to top_k) and the unmatched nodes on each side.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of an undirected bipartite graph, e.g. 'projects'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of matched pairs (and of unmatched nodes per side) to list.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "projects"
+    },
+    {
+      "graph_id": "projects",
+      "top_k": 5
+    }
+  ]
+}

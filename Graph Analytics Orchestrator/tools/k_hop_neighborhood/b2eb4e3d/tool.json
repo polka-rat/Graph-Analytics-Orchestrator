@@ -1,0 +1,64 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.b2eb4e3d",
+  "author": "b2eb4e3d",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds every node within k hops of a centre node using breadth-first search and reports each node's hop distance. Use it for questions like 'who is within 2 steps of X?', 'which airports can I reach from X in at most 2 flights?' or 'how big is X's local neighbourhood?'. Works on directed and undirected graphs, weighted or not (weights are ignored). Returns the centre node, the total number of nodes reached, counts per hop distance, and the nearest nodes sorted by distance then id (up to top_k). The full neighbourhood is also registered as a subgraph and returned as result_graph_id so other tools can analyse it. On directed graphs, direction chooses whether to follow outgoing edges, incoming edges or both. If node is omitted, the best-connected node is used as the centre. When a question names a place or person, find its id with lookup_node first.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, for example 'airports' or 'karate'."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the centre node, for example 'MAA'. Must be an id, not a label; find it with lookup_node. If omitted, the best-connected node (highest degree, ties by smallest id) is used."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Maximum number of hops, a whole number of at least 1.",
+        "default": 1,
+        "minimum": 1
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ],
+        "description": "Directed graphs only: 'out' follows edges leaving a node, 'in' follows edges entering it, 'both' ignores direction. Ignored on undirected graphs.",
+        "default": "out"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many nodes to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1",
+      "k": 2
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 2,
+      "direction": "out",
+      "top_k": 5
+    }
+  ]
+}

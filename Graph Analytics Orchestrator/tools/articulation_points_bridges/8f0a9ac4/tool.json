@@ -1,0 +1,36 @@
+{
+  "name": "articulation_points_bridges",
+  "implementation_id": "articulation_points_bridges.8f0a9ac4",
+  "author": "8f0a9ac4",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Finds articulation points (nodes) and bridges (edges) disconnects the graph. It answers network-resilience questions. It supports directed and undirected graphs, treating directed edges as undirected for this structural analysis, and returns deterministic node and edge references.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of articulation points and bridges to return for each result list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

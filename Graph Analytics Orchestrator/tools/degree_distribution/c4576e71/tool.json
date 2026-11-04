@@ -1,0 +1,50 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.c4576e71",
+  "author": "c4576e71",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the histogram of node degrees (how many nodes have 0, 1, 2, ... connections) together with min, max, mean and median degree, the most common degree and the five highest-degree nodes. Use it for questions like 'do most nodes have only a few connections?', 'is the network dominated by hubs?' or 'what is the typical degree?'. Works on directed and undirected graphs, weighted or not (weights are ignored). For directed graphs choose mode 'in', 'out' or 'total' (in plus out, the default). Wide ranges are grouped into at most max_bins bins. Returns the histogram bins with counts and fractions plus summary statistics.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "mode": {
+        "type": "string",
+        "description": "Which degree to count on directed graphs: 'in', 'out' or 'total' (in + out). Ignored for undirected graphs.",
+        "default": "total",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ]
+      },
+      "max_bins": {
+        "type": "integer",
+        "description": "Maximum number of histogram bins; if the degrees span more values, they are grouped into equal-width bins.",
+        "default": 20,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "mode": "in",
+      "max_bins": 10
+    },
+    {
+      "graph_id": "lesmis"
+    }
+  ]
+}

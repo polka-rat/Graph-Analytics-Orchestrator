@@ -1,0 +1,57 @@
+{
+  "name": "degree_distribution",
+  "implementation_id": "degree_distribution.f3b11984",
+  "author": "f3b11984",
+  "tier": "easy",
+  "category": "structure",
+  "description": "Computes the histogram of node degrees (how many nodes have 0, 1, 2, ... connections) plus min, max, mean, median and the most common degree. Use for questions such as 'do most nodes have only a few connections?', 'how are connections spread out?' or 'is the network dominated by a few hubs?'. Works on directed and undirected graphs; weights are ignored (degree counts edges). For directed graphs choose mode 'in', 'out' or 'total' (in + out, the default). Returns the statistics, the histogram as degree/count/fraction bins (wide ranges are grouped into at most 40 bins) and the top_k highest-degree nodes with their ids and labels.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "mode": {
+        "type": "string",
+        "description": "Which degree to count on a directed graph: 'total' (in + out, default), 'in' (edges arriving) or 'out' (edges leaving). Undirected graphs only accept 'total'.",
+        "default": "total",
+        "enum": [
+          "total",
+          "in",
+          "out"
+        ]
+      },
+      "bin_width": {
+        "type": "integer",
+        "description": "Number of consecutive degrees grouped into one histogram bin. 1 (default) gives one bin per degree; it is raised automatically if more than 40 bins would be needed.",
+        "default": 1,
+        "minimum": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many highest-degree nodes to list in top_nodes.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "mode": "out",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "bin_width": 5
+    }
+  ]
+}

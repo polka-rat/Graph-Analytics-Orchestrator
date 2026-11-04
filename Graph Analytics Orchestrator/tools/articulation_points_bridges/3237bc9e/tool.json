@@ -1,0 +1,39 @@
+{
+  "name": "articulation_points_bridges",
+  "implementation_id": "articulation_points_bridges.3237bc9e",
+  "author": "3237bc9e",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Finds articulation points (nodes whose removal splits the graph into more pieces) and bridges (edges whose removal does the same). Use it for questions like 'which single airport closure would split the network?', 'which person is the only link between two groups?' or 'which connection is a single point of failure?'. Works on undirected graphs; on directed graphs edge direction is ignored. Returns the number of articulation points and bridges, and up to top_k of each, sorted by node id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many articulation points and how many bridges to list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "projects"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "label_propagation",
+  "implementation_id": "label_propagation.39bca602",
+  "author": "39bca602",
+  "tier": "medium",
+  "category": "community",
+  "description": "Performs community detection using the Label Propagation Algorithm (LPA). Nodes iteratively adopt the community label held by the majority of their weighted neighbors. Registers each detected community as an induced subgraph in the store, and returns the subgraph ID of the largest community. Fully deterministic with customizable random seed.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Unique identifier of the graph to analyse."
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum propagation iterations before halting.",
+        "default": 30
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for reproducible visitation ordering and tie-breaking.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Number of largest communities to include in the result list.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "courses",
+      "top_k": 5
+    }
+  ]
+}

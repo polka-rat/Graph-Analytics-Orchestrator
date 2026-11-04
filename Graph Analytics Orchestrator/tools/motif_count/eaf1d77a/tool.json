@@ -1,0 +1,44 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.eaf1d77a",
+  "author": "eaf1d77a",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts small recurring patterns (motifs) in a graph. For every graph: triangles, wedges (2-paths), open wedges (missing triangles), 3-stars, 4-cycles, the transitivity (share of wedges that close into triangles) and the top_k nodes that sit in the most triangles. For directed graphs it also returns the full 16-type triad census and the classic directed motifs: feed-forward loops (a->b, b->c, a->c) and 3-cycles (a->b->c->a). Use for questions like 'Which small patterns are most common?', 'How many triangles are there?', 'How many feed-forward loops does this network have?' or 'How many triangles is Alice part of?' (pass node). Returns counts, the triad census for directed graphs, and nodes with id and label.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse"
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node ID: also report how many triangles this node is part of"
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "How many nodes to list in top_triangle_nodes"
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}
