@@ -1,0 +1,36 @@
+{
+  "name": "greedy_coloring",
+  "implementation_id": "greedy_coloring.f28f69d7",
+  "author": "f28f69d7",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Assigns colors to graph nodes so adjacent nodes have different colors, using deterministic largest-degree-first greedy coloring. Use it for conflict-free exam slots or other scheduling questions. Works on directed or undirected graphs; directed edges are treated as conflicts in either direction and weights are ignored. Returns the number of colors used across the whole graph and up to top_k labeled node assignments.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to color."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of node-color assignments to show, sorted by node ID. The color count still covers the whole graph.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "courses",
+      "top_k": 10
+    }
+  ]
+}

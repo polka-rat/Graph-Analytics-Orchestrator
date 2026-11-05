@@ -1,0 +1,53 @@
+{
+  "name": "maximal_cliques",
+  "implementation_id": "maximal_cliques.6e31812a",
+  "author": "6e31812a",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds cliques: groups of nodes in which every pair is directly connected, using Bron-Kerbosch with pivoting. Use it for questions such as 'what is the largest group where everyone knows everyone?', 'what is the clique number?', 'which tightly knit groups does X belong to?' or 'which airports are all connected to each other by direct routes?'. Works on undirected graphs; on directed graphs an edge in either direction counts (set mutual_only=true to require links both ways). Weights are ignored. Returns the clique number (size of the largest clique), how many maximal cliques there are and how many have the largest size, and the top_k largest cliques with their members; each returned clique is registered as a subgraph and result_graph_id is the largest one. Give node to see only the cliques containing that node.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'karate' or 'lesmis'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest cliques to return (fewer if they would exceed the output size limit).",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id. If given, only cliques that contain this node are counted and returned. Use lookup_node to find the id from a name."
+      },
+      "mutual_only": {
+        "type": "boolean",
+        "description": "Directed graphs only: if true, two nodes count as connected only when edges go both ways. Default false (an edge in either direction counts).",
+        "default": false
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 3
+    },
+    {
+      "graph_id": "karate",
+      "node": "m34"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    }
+  ]
+}

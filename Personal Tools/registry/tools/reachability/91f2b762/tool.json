@@ -1,0 +1,42 @@
+{
+  "name": "reachability",
+  "implementation_id": "reachability.91f2b762",
+  "author": "91f2b762",
+  "tier": "easy",
+  "category": "paths",
+  "description": "Answers whether any path exists from node A to node B, using breadth-first search. Use for yes/no questions such as 'can you get from X to Y at all?' or 'is Y reachable from X?'. On directed graphs it follows edge direction (reachable from source to target, not the reverse); on undirected graphs direction does not matter. Works on weighted and unweighted graphs and ignores weights. Returns reachable (true or false), the source and target nodes with id and label, and hops, the fewest edges on a path (null if there is no path). Needs node ids: call lookup_node first if you only have names.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse, e.g. 'airports' or 'courses'."
+      },
+      "source": {
+        "type": "string",
+        "description": "Node id where the path starts, e.g. 'MAA'. Use lookup_node to find it from a name."
+      },
+      "target": {
+        "type": "string",
+        "description": "Node id where the path should end, e.g. 'LIS'. Use lookup_node to find it from a name."
+      }
+    },
+    "required": [
+      "graph_id",
+      "source",
+      "target"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "airports",
+      "source": "MAA",
+      "target": "LIS"
+    },
+    {
+      "graph_id": "karate",
+      "source": "m1",
+      "target": "m34"
+    }
+  ]
+}

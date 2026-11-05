@@ -1,0 +1,47 @@
+{
+  "name": "louvain",
+  "implementation_id": "louvain.f28f69d7",
+  "author": "f28f69d7",
+  "tier": "hard",
+  "category": "community",
+  "description": "Finds communities by Louvain modularity optimization, repeatedly moving nodes and aggregating communities. Use it to discover groups with strong internal connections and report their modularity. Supports directed and undirected graphs; positive edge weights represent connection strength, and unweighted edges count as one. Returns ranked communities with labeled members and registered subgraph IDs, plus the largest community as result_graph_id. A seed makes the heuristic deterministic.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyze."
+      },
+      "resolution": {
+        "type": "number",
+        "description": "Positive modularity resolution. Values below 1 favor larger communities; values above 1 favor smaller ones.",
+        "default": 1.0
+      },
+      "seed": {
+        "type": "integer",
+        "description": "Random seed for node visit order, making repeated runs deterministic.",
+        "default": 0
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of largest communities to return, with ties broken by node ID.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "seed": 7,
+      "top_k": 5
+    }
+  ]
+}

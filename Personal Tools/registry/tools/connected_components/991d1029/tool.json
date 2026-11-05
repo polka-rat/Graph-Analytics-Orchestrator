@@ -1,0 +1,36 @@
+{
+  "name": "connected_components",
+  "implementation_id": "connected_components.991d1029",
+  "author": "991d1029",
+  "tier": "easy",
+  "category": "community",
+  "description": "Finds the connected components of an UNDIRECTED graph: maximal groups of nodes that are all reachable from each other, with their sizes. Use for questions like 'is the network connected?', 'how many components/clusters/islands are there?', 'what is the largest connected part?' or 'which nodes are isolated?'. Returns an error on directed graphs (use strongly_connected_components there). Returns the top_k largest components (ties broken by smallest node id), each with its size, up to 10 sample nodes, and a graph_id of the component as a subgraph; the summary gives the total number of components and the size of the largest.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the largest components to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "lesmis",
+      "top_k": 5
+    }
+  ]
+}

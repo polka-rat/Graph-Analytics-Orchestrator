@@ -1,0 +1,66 @@
+{
+  "name": "pagerank",
+  "implementation_id": "pagerank.da50612d",
+  "author": "da50612d",
+  "tier": "medium",
+  "category": "centrality",
+  "description": "Ranks nodes by overall importance with PageRank (power iteration): a node is important if important nodes link to it. Use for questions like 'which are the most important / influential / central nodes?', 'which airports are the most important hubs?', 'which characters matter most?', 'rank the courses by importance'. Works on directed graphs (links point from source to target) and undirected graphs. By default it uses edge weights, as NetworkX does (on airports the weight is route distance in km); set weighted=false to count every link equally. Returns the top_k nodes, highest first, each with id, label and its PageRank score (all scores sum to 1).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "damping": {
+        "type": "number",
+        "description": "Probability of following a link instead of jumping to a random node; strictly between 0 and 1.",
+        "default": 0.85
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top-ranked nodes to return.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      },
+      "weighted": {
+        "type": "boolean",
+        "description": "Split each node's score over its out-links in proportion to edge weight (true, NetworkX default) or equally (false).",
+        "default": true
+      },
+      "max_iter": {
+        "type": "integer",
+        "description": "Maximum number of power iterations before giving up.",
+        "default": 100
+      },
+      "tol": {
+        "type": "number",
+        "description": "Convergence tolerance: stop when the total change is below number_of_nodes * tol.",
+        "default": 1e-06
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5
+    },
+    {
+      "graph_id": "airports",
+      "top_k": 5,
+      "weighted": false
+    },
+    {
+      "graph_id": "lesmis",
+      "damping": 0.9,
+      "top_k": 3
+    }
+  ]
+}

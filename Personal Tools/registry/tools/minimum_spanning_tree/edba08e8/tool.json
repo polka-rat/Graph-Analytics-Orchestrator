@@ -1,0 +1,36 @@
+{
+  "name": "minimum_spanning_tree",
+  "implementation_id": "minimum_spanning_tree.edba08e8",
+  "author": "edba08e8",
+  "tier": "medium",
+  "category": "structure",
+  "description": "Computes the minimum spanning tree of an UNDIRECTED graph with Kruskal's algorithm: the cheapest set of edges that connects all nodes, using edge weights (every edge counts as 1 on unweighted graphs). Use for questions like 'cheapest way to connect all the sites?' or 'minimum total weight needed to link everything?'. Directed graphs return an error. On a disconnected graph it returns a spanning forest and reports the number of components. Returns total_weight, number of edges and the cheapest top_k tree edges (with node id and label), plus result_graph_id: a registered subgraph holding the whole tree, usable by other tools.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of an undirected graph to analyse, e.g. 'lesmis' or 'karate'."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many tree edges to list in the result (cheapest first). The full tree is always available through result_graph_id.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "lesmis"
+    },
+    {
+      "graph_id": "karate",
+      "top_k": 5
+    }
+  ]
+}

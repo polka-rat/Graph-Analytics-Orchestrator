@@ -1,0 +1,64 @@
+{
+  "name": "motif_count",
+  "implementation_id": "motif_count.63fb3e40",
+  "author": "63fb3e40",
+  "tier": "hard",
+  "category": "structure",
+  "description": "Counts small patterns (motifs) of 3 or 4 nodes. Size 3 is the triad census: for directed graphs the 16 types of NetworkX's triadic_census, e.g. 030T feed-forward loop (A->B->C, A->C), 030C 3-cycle, 300 mutual triangle; for undirected graphs triangles and open triads (A-B-C). Size 4 counts the six connected 4-node patterns, ignoring direction: 4_path, 4_star, 4_cycle, tailed_triangle, diamond, 4_clique. Use it for 'Which small patterns are most common?', 'How many triangles / feed-forward loops / squares are there?', 'Who is in the most triangles?' (motif) or 'How many triangles is Alice in?' (node). Works on directed and undirected graphs; weights are ignored. Returns each pattern's count, share and ratio to a random graph with as many links, triangles and transitivity (size 3), and the top_k nodes taking part most in one motif (default triangle, or 4_clique for size 4).",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "size": {
+        "type": "integer",
+        "description": "Nodes per pattern: 3 (triads, the default) or 4 (4-node patterns, direction ignored). If omitted it follows the motif.",
+        "enum": [
+          3,
+          4
+        ]
+      },
+      "motif": {
+        "type": "string",
+        "description": "Optional pattern to focus on: its count and the nodes in the most copies of it. One of triangle, open_triad; for directed graphs also a triad code or name such as 030T / feed_forward_loop, 030C / cycle, 021D / out_star, 021U / in_star, 021C / chain, 300 / mutual_triangle; or a 4-node pattern: 4_path, 4_star, 4_cycle (square), tailed_triangle, diamond, 4_clique."
+      },
+      "node": {
+        "type": "string",
+        "description": "Optional node id: also return how many copies of each pattern this node is part of, and its rank for the focus motif. Use lookup_node to find ids."
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many top nodes to list for the focus motif.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate"
+    },
+    {
+      "graph_id": "airports"
+    },
+    {
+      "graph_id": "airports",
+      "motif": "feed_forward_loop",
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "size": 4
+    },
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    }
+  ]
+}

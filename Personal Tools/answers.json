@@ -1,0 +1,23 @@
+[
+    {
+        "query_id": "q02",
+        "status": "answered",
+        "answer_text": "The shortest route by distance from Chennai International Airport (MAA) to John F Kennedy International Airport (JFK) is MAA -> DEL -> JFK (via Indira Gandhi International Airport in Delhi) with a total distance of 13,515 km.",
+        "answer": {
+            "type": "path",
+            "value": [
+                "MAA",
+                "DEL",
+                "JFK"
+            ]
+        },
+        "tools_used": [
+            "lookup_node.instructors",
+            "lookup_node.instructors",
+            "lookup_node.instructors",
+            "lookup_node.instructors",
+            "shortest_path_weighted.c4576e71"
+        ],
+        "trace_file": "traces/q02.jsonl"
+    }
+]

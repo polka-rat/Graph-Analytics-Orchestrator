@@ -1,0 +1,67 @@
+{
+  "name": "ego_network",
+  "implementation_id": "ego_network.98eff80e",
+  "author": "98eff80e",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Extracts the ego network (induced subgraph centered on a focal node and all neighbours within radius hops). Registers the resulting subgraph in the graph store (result_graph_id) for downstream analysis. Works on directed and undirected graphs, answering questions like 'Show me Bob\\'s immediate network' or 'What is the local subgraph around airport MAA?'.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "ID of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "ID of the focal/ego center node. Use lookup_node first if only a name is known."
+      },
+      "radius": {
+        "type": "integer",
+        "description": "Maximum hop distance from the center node to include in the ego network.",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "include_center": {
+        "type": "boolean",
+        "description": "Whether to include the center node itself in the ego network subgraph.",
+        "default": true
+      },
+      "undirected": {
+        "type": "boolean",
+        "description": "If true on a directed graph, traverse both incoming and outgoing edges when finding neighbours; if false, follow outgoing edges only (matching NetworkX ego_graph).",
+        "default": false
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "Maximum number of nodes in the ego network to list in the result preview.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "radius": 1,
+      "top_k": 5
+    },
+    {
+      "graph_id": "lesmis",
+      "node": "c11",
+      "radius": 2,
+      "top_k": 10
+    }
+  ]
+}

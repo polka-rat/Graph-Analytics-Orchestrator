@@ -1,0 +1,67 @@
+{
+  "name": "k_hop_neighborhood",
+  "implementation_id": "k_hop_neighborhood.32016695",
+  "author": "32016695",
+  "tier": "easy",
+  "category": "subgraph",
+  "description": "Finds every node within k hops (steps along edges) of a given node, using breadth-first search. Use for questions like 'who is within two hops of Alice?', 'which airports can I reach from Chennai with at most one change?' (k=2) or 'which courses lead to this one?' (direction 'in'). Works on directed and undirected graphs, weighted or not (weights are ignored; only the number of hops counts). Returns how many nodes were found, how many sit at each hop distance, and the nearest top_k nodes with their hop distance. Also registers the neighbourhood (the start node plus all nodes found) as a new graph and returns its id in result_graph_id, so other tools can run on it. Needs a node id: use lookup_node first to turn a name into an id.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {
+        "type": "string",
+        "description": "Id of the graph to analyse."
+      },
+      "node": {
+        "type": "string",
+        "description": "Id of the start node, e.g. 'MAA' in airports or 'm1' in karate. Use lookup_node to find it from a name."
+      },
+      "k": {
+        "type": "integer",
+        "description": "Maximum number of hops from the start node. k=1 gives direct neighbours.",
+        "default": 2,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "out",
+          "in",
+          "both"
+        ],
+        "description": "Directed graphs only: 'out' follows edges forwards (where can I get to), 'in' follows them backwards (who can get here), 'both' ignores direction. Ignored on undirected graphs.",
+        "default": "out"
+      },
+      "top_k": {
+        "type": "integer",
+        "description": "How many of the found nodes to list, nearest first. The counts always cover all of them.",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "graph_id",
+      "node"
+    ]
+  },
+  "examples": [
+    {
+      "graph_id": "karate",
+      "node": "m1"
+    },
+    {
+      "graph_id": "airports",
+      "node": "MAA",
+      "k": 1,
+      "top_k": 5
+    },
+    {
+      "graph_id": "courses",
+      "node": "CS301",
+      "direction": "in",
+      "k": 3
+    }
+  ]
+}
