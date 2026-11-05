@@ -188,6 +188,10 @@ def main():
         required=True,
         help="Path to the output JSON file.",
     )
+    parser.add_argument(
+        "--traces",
+        help="Directory for JSONL traces (defaults beside the output file).",
+    )
 
     args = parser.parse_args()
 
@@ -199,7 +203,12 @@ def main():
         store = GraphStore()
         client = make_client()
 
-        trace_dir = Path("traces")
+        output_path = Path(args.out).resolve()
+        trace_dir = (
+            Path(args.traces).resolve()
+            if args.traces
+            else output_path.parent / "traces"
+        )
         trace_dir.mkdir(parents=True, exist_ok=True)
 
         results = []
@@ -220,7 +229,6 @@ def main():
                 f"{result['query_id']}: {result['answer_text']}"
             )
 
-        output_path = Path(args.out)
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         with output_path.open("w", encoding="utf-8") as file:
@@ -233,6 +241,7 @@ def main():
 
         print(f"\nProcessed {len(results)} queries.")
         print(f"Output saved to: {output_path}")
+        print(f"Traces saved to: {trace_dir}")
 
     except Exception as exc:
         print(f"Orchestrator error: {exc}", file=sys.stderr)

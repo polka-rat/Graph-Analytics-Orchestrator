@@ -29,7 +29,8 @@ To incorporate this registry into your group project starter kit:
 
 ## Running the orchestrator
 
-Install the dependencies from the project root:
+Run these commands from the `Graph Analytics Orchestrator` directory.
+Install the dependencies:
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -44,7 +45,18 @@ python run_queries.py --queries queries.json --out answers.json
 The orchestrator discovers infrastructure tools from `infra_tools/` and registry
 tools directly from `tools/`. At startup, the tool curator validates every
 implementation against the tool contract and keeps one passing implementation
-per tool name. It writes one JSONL execution trace per query to `traces/`.
+per tool name. It writes one JSONL execution trace per query beside the output
+file in `traces/` (or to a directory passed with `--traces`).
+
+Run the offline integration demo without an API key:
+
+```powershell
+python demo.py
+```
+
+For a real run, copy `.env.example` to `.env`, set `LLM_API_KEY`, and keep the
+API key out of source control. The runner accepts any JSON query file containing
+objects with unique `query_id` and non-empty `query` fields.
 
 Evaluate generated answers offline against an expected answer file:
 
