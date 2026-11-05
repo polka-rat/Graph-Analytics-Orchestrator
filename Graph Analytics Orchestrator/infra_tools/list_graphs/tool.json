@@ -1,0 +1,16 @@
+{
+  "name": "list_graphs",
+  "implementation_id": "list_graphs.instructors",
+  "author": "instructors",
+  "tier": "infra",
+  "category": "infrastructure",
+  "description": "Lists the graphs you can analyse, with each graph's id, a description of what its nodes and edges mean, whether it is directed or weighted, and its node and edge counts. Call this first when you do not know which graph a question is about.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "include_subgraphs": {"type": "boolean", "description": "Also list subgraphs created by earlier tool calls.", "default": false}
+    },
+    "required": []
+  },
+  "examples": [{}, {"include_subgraphs": true}]
+}

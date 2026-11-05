@@ -24,6 +24,23 @@ tools/
 ---
 
 ## How to Use in Your Group Project
-
 To incorporate this registry into your group project starter kit:
 - Copy the contents of `tools/` into your project's `registry/tools/` folder.
+
+## Running the orchestrator
+
+Install the dependencies from the project root:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+Set `LLM_API_KEY` in the environment, then run:
+
+```powershell
+python run_queries.py --queries queries.json --out answers.json
+```
+
+The orchestrator discovers infrastructure tools from `infra_tools/` and registry
+tools directly from `tools/`. It writes one JSONL execution trace per query to
+`traces/`.

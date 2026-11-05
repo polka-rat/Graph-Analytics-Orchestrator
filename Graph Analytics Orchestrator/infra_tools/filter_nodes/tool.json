@@ -1,0 +1,22 @@
+{
+  "name": "filter_nodes",
+  "implementation_id": "filter_nodes.instructors",
+  "author": "instructors",
+  "tier": "infra",
+  "category": "infrastructure",
+  "description": "Selects the nodes whose attribute matches a condition, such as all airports in one country or all courses at level 300, and registers the subgraph they form. Other tools can then run on that subgraph through result_graph_id. Returns the number of matching nodes and up to 10 examples.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {"type": "string", "description": "Id of the graph to filter."},
+      "attribute": {"type": "string", "description": "Node attribute to test, e.g. 'country', 'city', 'level' or 'label'."},
+      "value": {"type": "string", "description": "Value to compare with. Numbers are given as text, e.g. '300'."},
+      "op": {"type": "string", "description": "Comparison to apply.", "enum": ["eq", "ne", "contains", "gt", "gte", "lt", "lte"], "default": "eq"}
+    },
+    "required": ["graph_id", "attribute", "value"]
+  },
+  "examples": [
+    {"graph_id": "airports", "attribute": "country", "value": "India"},
+    {"graph_id": "courses", "attribute": "level", "value": "300", "op": "gte"}
+  ]
+}

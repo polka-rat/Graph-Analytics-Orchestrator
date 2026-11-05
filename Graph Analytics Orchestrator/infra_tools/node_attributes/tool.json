@@ -1,0 +1,17 @@
+{
+  "name": "node_attributes",
+  "implementation_id": "node_attributes.instructors",
+  "author": "instructors",
+  "tier": "infra",
+  "category": "infrastructure",
+  "description": "Returns the stored attributes of one node, such as an airport's city, country and coordinates, or a course's level. Use it to answer questions about a node's properties. It does not compute anything about the node's connections.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {"type": "string", "description": "Id of the graph."},
+      "node_id": {"type": "string", "description": "Id of the node (use lookup_node to find it from a name)."}
+    },
+    "required": ["graph_id", "node_id"]
+  },
+  "examples": [{"graph_id": "airports", "node_id": "MAA"}, {"graph_id": "courses", "node_id": "CS403"}]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "lookup_node",
+  "implementation_id": "lookup_node.instructors",
+  "author": "instructors",
+  "tier": "infra",
+  "category": "infrastructure",
+  "description": "Finds node ids from a name. Use it whenever a question names a node (a person, an airport, a city, a course), because other tools need node ids, not names. Tolerates small spelling mistakes. Returns the best-matching nodes with a match score from 0 to 1; an empty list means nothing matched.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "graph_id": {"type": "string", "description": "Id of the graph to search."},
+      "name": {"type": "string", "description": "The name to look for, e.g. 'Chennai' or 'Valjean'."},
+      "top_k": {"type": "integer", "description": "Maximum number of matches to return.", "default": 5, "minimum": 1, "maximum": 100}
+    },
+    "required": ["graph_id", "name"]
+  },
+  "examples": [
+    {"graph_id": "airports", "name": "Chennai"},
+    {"graph_id": "lesmis", "name": "Valjan", "top_k": 3},
+    {"graph_id": "airports", "name": "Atlantis"}
+  ]
+}

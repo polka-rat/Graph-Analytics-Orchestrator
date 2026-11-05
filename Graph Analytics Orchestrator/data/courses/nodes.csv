@@ -1,0 +1,22 @@
+id,label,level
+CS101,Programming Basics,100
+MA101,Calculus,100
+MA102,Discrete Mathematics,100
+CS102,Data Structures,100
+MA201,Linear Algebra,200
+MA202,Probability and Statistics,200
+CS201,Algorithms,200
+CS202,Computer Organisation,200
+CS203,Theory of Computation,200
+CS301,Operating Systems,300
+CS302,Databases,300
+CS303,Computer Networks,300
+CS304,Compilers,300
+CS305,Machine Learning,300
+CS306,Graph Algorithms,300
+CS307,Artificial Intelligence,300
+CS401,Distributed Systems,400
+CS402,Deep Learning,400
+CS403,Multi-Agent Systems,400
+CS404,Reinforcement Learning,400
+CS405,Network Science,400

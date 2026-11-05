@@ -1,0 +1,55 @@
+{
+  "airports": {
+    "description": "Airline routes between the 500 airports with the most routes. Directed: an edge A->B is a non-stop route from A to B. weight = great-circle distance in km; airlines = number of airlines flying the route. Node ids are IATA codes. Snapshot of OpenFlights data from 2014, not current schedules.",
+    "directed": true,
+    "weighted": true,
+    "node_attributes": {
+      "city": "str",
+      "country": "str",
+      "lat": "float",
+      "lon": "float"
+    },
+    "edge_attributes": {
+      "airlines": "int"
+    },
+    "source": "OpenFlights (https://openflights.org/data.html), Open Database License (ODbL)"
+  },
+  "karate": {
+    "description": "Zachary's karate club: friendships among 34 club members, before the club split in two. Undirected and unweighted. 'club' is the faction each member joined after the split.",
+    "directed": false,
+    "weighted": false,
+    "node_attributes": {
+      "club": "str"
+    },
+    "edge_attributes": {},
+    "source": "W. W. Zachary (1977), via NetworkX karate_club_graph"
+  },
+  "lesmis": {
+    "description": "Characters in Victor Hugo's Les Miserables. Undirected; an edge joins two characters who appear in the same chapter, weight = number of such chapters.",
+    "directed": false,
+    "weighted": true,
+    "node_attributes": {},
+    "edge_attributes": {},
+    "source": "D. E. Knuth, The Stanford GraphBase (1993), via NetworkX les_miserables_graph"
+  },
+  "courses": {
+    "description": "A small sample course catalogue (illustrative, not a real curriculum). Directed acyclic: an edge A->B means course A is a prerequisite of course B.",
+    "directed": true,
+    "weighted": false,
+    "node_attributes": {
+      "level": "int"
+    },
+    "edge_attributes": {},
+    "source": "Synthetic sample made for this course"
+  },
+  "projects": {
+    "description": "Synthetic sample: 16 students and the projects (10) each is willing to work on. Undirected and bipartite; 'side' says whether a node is a student or a project.",
+    "directed": false,
+    "weighted": false,
+    "node_attributes": {
+      "side": "str"
+    },
+    "edge_attributes": {},
+    "source": "Synthetic sample made for this course (random seed 7)"
+  }
+}
