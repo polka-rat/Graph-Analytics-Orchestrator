@@ -5,6 +5,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+import time
 
 from graphkit import GraphStore
 from graphkit.llm import make_client
@@ -17,7 +18,54 @@ from orchestrator.answer_parser import parse_answer
 
 MAX_TOOL_CALLS = 5
 
+# ... inside your run loop ...
 
+def run_all(queries, workflow, out_path, traces_dir):
+    out_file = Path(out_path)
+    existing_answers = {}
+
+    # Load existing answers if resuming a previous run
+    if out_file.exists():
+        try:
+            data = json.loads(out_file.read_text(encoding="utf-8"))
+            existing_answers = {item["query_id"]: item for item in data if item.get("status") != "error"}
+            print(f"[RESUME] Loaded {len(existing_answers)} previously successful answers. Skipping them.")
+        except Exception:
+            existing_answers = {}
+
+    results = list(existing_answers.values())
+
+    for i, q in enumerate(queries, 1):
+        qid = q["query_id"]
+
+        # Skip if already answered successfully
+        if qid in existing_answers:
+            continue
+
+        print(f"[{i}/{len(queries)}] Processing {qid}: {q['query'][:65]}...")
+
+        try:
+            # Execute workflow
+            res = execute_query(workflow, q, traces_dir)
+            results.append(res)
+        except Exception as exc:
+            print(f"[ERROR] {qid}: {exc}")
+            results.append({
+                "query_id": qid,
+                "status": "error",
+                "answer_text": f"Error: {exc}",
+                "answer": {"type": "text", "value": ""},
+                "tools_used": [],
+                "trace_file": None,
+            })
+
+        # Save progress after every query so nothing is lost if interrupted
+        out_file.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
+        # Pacing delay: stay well under the 15 RPM limit
+        time.sleep(4.0)
+
+    print(f"Done. Saved {len(results)} answers to {out_file}.")
 
 def recover_tools_used(trace_path, planner):
     """Recover successfully executed tools from a query's trace."""
@@ -222,12 +270,14 @@ def main():
                 trace_dir,
             )
 
+
             results.append(result)
 
             print(
                 f"[{result['status'].upper()}] "
                 f"{result['query_id']}: {result['answer_text']}"
             )
+            time.sleep(2)
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
