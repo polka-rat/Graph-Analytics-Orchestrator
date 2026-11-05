@@ -3,9 +3,9 @@
 
 from pathlib import Path
 
-from graphkit import GraphStore, discover
-from graphkit.contract import OUTPUT_KEYS
+from graphkit import GraphStore
 from graphkit.llm import tool_schema
+from orchestrator.curator import ToolCurator
 
 FINAL_ANSWER_INSTRUCTIONS = """
 FINAL ANSWER FORMAT:
@@ -57,6 +57,7 @@ class Planner:
 
         self.tools = {}
         self.schemas = []
+        self.curation = {}
 
         self._discover_tools()
 
@@ -68,20 +69,9 @@ class Planner:
         if not registry_dir.exists():
             registry_dir = self.project_root / "tools"
 
-        discovered = discover(infra_dir, registry_dir)
-        candidates = {}
-        for tool in discovered:
-            candidates.setdefault(tool.name, []).append(tool)
-
-        # Registry submissions can contain multiple implementations of one
-        # menu tool. Smoke-test candidates and retain one working implementation
-        # so the planner exposes a single callable name to the model.
-        test_store = GraphStore(self.project_root / "data")
-        for name, tools in candidates.items():
-            for tool in tools:
-                if self._passes_smoke_test(tool, test_store):
-                    self.tools[name] = tool
-                    break
+        curator = ToolCurator(infra_dir, registry_dir)
+        self.tools = curator.curate()
+        self.curation = curator.summary()
 
         if not self.tools:
             raise RuntimeError("No graph tools were discovered.")
@@ -91,16 +81,6 @@ class Planner:
             tool_schema(tool.manifest)
             for tool in self.tools.values()
         ]
-
-    @staticmethod
-    def _passes_smoke_test(tool, store):
-        """Return whether a manifest example produces a valid contract result."""
-        examples = tool.manifest.get("examples", [])
-        if not examples:
-            return True
-
-        output = tool.call(store, **examples[0])
-        return isinstance(output, dict) and set(output) == set(OUTPUT_KEYS)
 
     def get_tools(self):
         """Return the discovered tools indexed by their names."""
