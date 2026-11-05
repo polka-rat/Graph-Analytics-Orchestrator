@@ -8,6 +8,35 @@ from graphkit.llm import tool_schema
 from orchestrator.curator import ToolCurator
 
 FINAL_ANSWER_INSTRUCTIONS = """
+
+CRITICAL CLASSIFICATION INSTRUCTIONS (CHECK BEFORE CALLING TOOLS):
+
+1. Ambiguous Queries -> status: "clarification_needed":
+   - If no graph is specified and multiple graphs could apply (e.g., "Which node is the most important?").
+   - If a city has multiple major airports and the query does not specify which one (e.g., "Paris to Tokyo").
+   - If the metric is undefined (e.g., "How close are Marius and Cosette?").
+   Set:
+   {
+       "status": "clarification_needed",
+       "answer_text": "Clarification needed: specify the graph or exact metric.",
+       "answer": {"type": "text", "value": ""}
+   }
+
+2. Unsupported Queries -> status: "unsupported":
+   - Pricing/fares, airline routes, or flight schedules/dates (airports dataset contains only topology and distance).
+   - Graph planarity or other algorithms not supported by available tools.
+   Set:
+   {
+       "status": "unsupported",
+       "answer_text": "Unsupported: dataset does not contain fare, schedule, or airline attributes, or no tool exists.",
+       "answer": {"type": "text", "value": ""}
+   }
+
+3. Answered Queries -> status: "answered":
+   - Use node IDs (e.g., 'FRA', 'm1', 'CS101'), NEVER human labels alone.
+   - For paths, return ordered node ID lists: ["MAA", "DEL", "JFK"].
+   - For chained subgraphs, pass the result_graph_id from step 1 into graph_id for step 2.
+   
 FINAL ANSWER FORMAT:
 
 When you have completed the analysis, return your final response
