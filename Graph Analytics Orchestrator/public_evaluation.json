@@ -1,0 +1,250 @@
+{
+  "total_queries": 30,
+  "passed_queries": 0,
+  "failed_queries": 30,
+  "accuracy": 0.0,
+  "answered_queries": 23,
+  "answered_correct": 0,
+  "details": [
+    {
+      "query_id": "q01",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q02",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q03",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q04",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q05",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q06",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q07",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q08",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q09",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q10",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q11",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q12",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q13",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q14",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q15",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q16",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q17",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q18",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q19",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q20",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q21",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q22",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q23",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'answered', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q24",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'clarification_needed', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q25",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'clarification_needed', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q26",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'clarification_needed', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q27",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'unsupported', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q28",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'unsupported', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q29",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'unsupported', got 'error'"
+      ],
+      "tool_calls": 0
+    },
+    {
+      "query_id": "q30",
+      "passed": false,
+      "failures": [
+        "status mismatch: expected 'unsupported', got 'error'"
+      ],
+      "tool_calls": 0
+    }
+  ]
+}

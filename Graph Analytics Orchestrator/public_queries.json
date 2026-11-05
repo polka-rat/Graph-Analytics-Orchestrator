@@ -1,0 +1,122 @@
+[
+  {
+    "query_id": "q01",
+    "query": "How many non-stop routes does the airport network have?"
+  },
+  {
+    "query_id": "q02",
+    "query": "Which airport has the most non-stop routes, counting arrivals and departures?"
+  },
+  {
+    "query_id": "q03",
+    "query": "What is the fewest number of flights needed to get from Chennai to Lisbon?"
+  },
+  {
+    "query_id": "q04",
+    "query": "What is the shortest route by distance from Chennai to New York JFK?"
+  },
+  {
+    "query_id": "q05",
+    "query": "What are the top 5 airports by PageRank?"
+  },
+  {
+    "query_id": "q06",
+    "query": "Which 5 airports, other than Chennai itself, are most relevant to Chennai?"
+  },
+  {
+    "query_id": "q07",
+    "query": "Can every airport in the network reach every other airport by some sequence of flights?"
+  },
+  {
+    "query_id": "q08",
+    "query": "Who are the top 3 brokers between groups in the karate club?"
+  },
+  {
+    "query_id": "q09",
+    "query": "Which members of the karate club would split it into disconnected parts if they left?"
+  },
+  {
+    "query_id": "q10",
+    "query": "How many members are in the largest group of the karate club in which everyone is friends with everyone else?"
+  },
+  {
+    "query_id": "q11",
+    "query": "How many independent friendship chains, sharing no friendship, connect the instructor and the administrator?"
+  },
+  {
+    "query_id": "q12",
+    "query": "What is the Jaccard similarity of Valjean's and Javert's connections?"
+  },
+  {
+    "query_id": "q13",
+    "query": "Give an order in which all the courses can be taken."
+  },
+  {
+    "query_id": "q14",
+    "query": "What is the largest number of students who can each be assigned a different project?"
+  },
+  {
+    "query_id": "q15",
+    "query": "Which German airport has the most routes to other German airports?"
+  },
+  {
+    "query_id": "q16",
+    "query": "What is the total distance of the shortest network of routes connecting all Indian airports?"
+  },
+  {
+    "query_id": "q17",
+    "query": "Among the karate instructor's friends, who has the most connections within the instructor's circle?"
+  },
+  {
+    "query_id": "q18",
+    "query": "Within the United States, which airport lies on the most shortest routes between other US airports?"
+  },
+  {
+    "query_id": "q19",
+    "query": "When Girvan–Newman first splits the karate club into two groups, who is the most influential member of the larger group by PageRank?"
+  },
+  {
+    "query_id": "q20",
+    "query": "What is the average clustering coefficient of the karate club's densest core?"
+  },
+  {
+    "query_id": "q21",
+    "query": "Apart from Valjean, who is the key broker in Valjean's immediate circle?"
+  },
+  {
+    "query_id": "q22",
+    "query": "How many triangles are there in Javert's immediate circle?"
+  },
+  {
+    "query_id": "q23",
+    "query": "Which has the higher closeness centrality, Delhi or Mumbai, and by how much?"
+  },
+  {
+    "query_id": "q24",
+    "query": "Which node is the most important?"
+  },
+  {
+    "query_id": "q25",
+    "query": "What's the shortest route from Paris to Tokyo?"
+  },
+  {
+    "query_id": "q26",
+    "query": "How close are Marius and Cosette?"
+  },
+  {
+    "query_id": "q27",
+    "query": "What is the cheapest fare from Chennai to Delhi?"
+  },
+  {
+    "query_id": "q28",
+    "query": "Which airline flies the most routes from Delhi?"
+  },
+  {
+    "query_id": "q29",
+    "query": "Which flights go from Chennai to Singapore next Tuesday?"
+  },
+  {
+    "query_id": "q30",
+    "query": "Is the karate network planar?"
+  }
+]

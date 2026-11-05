@@ -54,6 +54,35 @@ Run the offline integration demo without an API key:
 python demo.py
 ```
 
+Convert the public Excel query set before running the agent:
+
+```powershell
+python convert_public_queries.py
+python run_queries.py --queries public_queries.json --out answers_public.json
+```
+
+This creates `public_queries.json` for the runner and
+`public_expected.json` for offline evaluation.
+
+Run the converted public query set:
+
+```powershell
+python run_queries.py `
+  --queries public_queries.json `
+  --out answers_public.json `
+  --traces public_traces
+```
+
+Evaluate the generated public answers:
+
+```powershell
+python evaluate_answers.py `
+  --expected public_expected.json `
+  --actual answers_public.json `
+  --traces public_traces `
+  --out public_evaluation.json
+```
+
 For a real run, copy `.env.example` to `.env`, set `LLM_API_KEY`, and keep the
 API key out of source control. The runner accepts any JSON query file containing
 objects with unique `query_id` and non-empty `query` fields.
