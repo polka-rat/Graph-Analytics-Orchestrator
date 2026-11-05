@@ -45,3 +45,14 @@ The orchestrator discovers infrastructure tools from `infra_tools/` and registry
 tools directly from `tools/`. At startup, the tool curator validates every
 implementation against the tool contract and keeps one passing implementation
 per tool name. It writes one JSONL execution trace per query to `traces/`.
+
+Evaluate generated answers offline against an expected answer file:
+
+```powershell
+python evaluate_answers.py --expected answers_public.json `
+  --actual answers.json --traces traces --out evaluation.json
+```
+
+The evaluator compares structured answers using the course rules: numeric
+answers allow 0.1% error, node lists are compared as sets, paths preserve order,
+and ambiguous or unsupported statuses must match exactly.
