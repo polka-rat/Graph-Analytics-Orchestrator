@@ -60,12 +60,24 @@ def load_tool(tool_dir: str | Path) -> Tool:
     return Tool(manifest=manifest, run=module.run, path=tool_dir)
 
 
-def discover(*roots: str | Path) -> list[Tool]:
-    """Load every tool folder (any folder with a tool.json) under the given roots."""
-    tools = []
+def find_tool_dirs(*roots: str | Path) -> list[Path]:
+    """Return tool folders under the roots, without importing them.
+
+    Order matches ``discover``: each root in turn, ``tool.json`` paths sorted,
+    and any path that contains a ``template`` directory left out.
+    """
+    folders = []
     for root in roots:
-        for manifest_path in sorted(Path(root).rglob("tool.json")):
+        root_path = Path(root)
+        if not root_path.exists():
+            continue
+        for manifest_path in sorted(root_path.rglob("tool.json")):
             if "template" in manifest_path.parts:
                 continue
-            tools.append(load_tool(manifest_path.parent))
-    return tools
+            folders.append(manifest_path.parent)
+    return folders
+
+
+def discover(*roots: str | Path) -> list[Tool]:
+    """Load every tool folder (any folder with a tool.json) under the given roots."""
+    return [load_tool(folder) for folder in find_tool_dirs(*roots)]

@@ -8,6 +8,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "Graph Analytics Orchestrator"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -15,25 +18,29 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          # networkx==3.7 in requirements.txt requires Python >=3.12.
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Check that only tool folders changed
         run: |
+          # git diff paths stay relative to the repository root, not this directory.
           changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
           echo "$changed"
-          outside=$(echo "$changed" | grep -v -E '^registry/tools/[a-z_]+/[A-Za-z0-9_-]+/' || true)
+          allowed='^Graph Analytics Orchestrator/((registry/)?tools/[a-z_]+/[A-Za-z0-9_-]+/|graphkit/|orchestrator/|tests/|\.gitignore$)|^\.github/workflows/validate-tools\.yml$'
+          outside=$(printf '%s\n' "$changed" | grep -v -E "$allowed" | sed '/^$/d' || true)
           if [ -n "$outside" ]; then
-            echo "::error::Pull requests may only change files in registry/tools/<tool_name>/<your_id>/. Also changed:"
+            echo "::error::Pull requests may only change Graph Analytics Orchestrator/tools/<tool_name>/<your_id>/, graphkit/, orchestrator/, tests/, .gitignore, or .github/workflows/validate-tools.yml. Also changed:"
             echo "$outside"
             exit 1
           fi
 
       - name: Validate changed tools and run their tests
         run: |
-          dirs=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | cut -d/ -f1-4 | sort -u)
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
+          dirs=$(printf '%s\n' "$changed" | sed -n -E 's#^Graph Analytics Orchestrator/((registry/)?tools/[a-z_]+/[A-Za-z0-9_-]+)/.*#\1#p' | sort -u)
           status=0
           for d in $dirs; do
             if [ ! -f "$d/tool.json" ]; then echo "::error::$d has no tool.json"; status=1; continue; fi

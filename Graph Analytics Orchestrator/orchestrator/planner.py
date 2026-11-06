@@ -98,7 +98,7 @@ class Planner:
         if not registry_dir.exists():
             registry_dir = self.project_root / "tools"
 
-        curator = ToolCurator(infra_dir, registry_dir)
+        curator = ToolCurator(infra_dir, registry_dir, project_root=self.project_root)
         self.tools = curator.curate()
         self.curation = curator.summary()
 
